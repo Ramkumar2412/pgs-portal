@@ -2,6 +2,7 @@ import { Suspense, lazy } from "react";
 import { Navigate, useRoutes, useLocation } from "react-router-dom";
 
 import RouteConstants from "../constants/RouteConstants";
+import AuthGuard from "src/guards/AuthGuard";
 
 
 
