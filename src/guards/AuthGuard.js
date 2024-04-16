@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import AuthService from 'src/services/authService';
+import AuthService from '../services/authService';
 import { useState } from 'react';
 
 

@@ -1,6 +1,6 @@
 import get from 'lodash/get';
-import { StorageConstants } from 'src/constants/StorageConstants';
-import ObjectStorage from 'src/modules/ObjectStorage';
+import { StorageConstants } from '../constants/StorageConstants';
+import ObjectStorage from '../modules/ObjectStorage';
 import Navigation from './NavigationService';
 
 

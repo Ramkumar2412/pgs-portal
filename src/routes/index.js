@@ -1,8 +1,9 @@
 import { Suspense, lazy } from "react";
 import { Navigate, useRoutes, useLocation } from "react-router-dom";
+import DashboardLayout from "../layouts/dashboard"
 
 import RouteConstants from "../constants/RouteConstants";
-import AuthGuard from "src/guards/AuthGuard";
+import AuthGuard from "../guards/AuthGuard";
 
 
 
@@ -23,15 +24,15 @@ export default function Router() {
             <DashboardLayout />
           </AuthGuard>
         ),
-        path: "dashboard",
-        children: [
-          { path: "page1", element: <PageSix /> },
-          {path: "userDetails", element:<UserDetails/>},
-          { path: "mapPage", element: <MapPage /> },
-          { path: "bookings", element: <PageSeven /> },
-          { path: "Views", element: <PageEight /> },
-          { path: "user/profile", element: <PageFive /> },
-        ],
+        path: "dashboard"
+        // children: [
+        //   { path: "page1", element: <PageSix /> },
+        //   {path: "userDetails", element:<UserDetails/>},
+        //   { path: "mapPage", element: <MapPage /> },
+        //   { path: "bookings", element: <PageSeven /> },
+        //   { path: "Views", element: <PageEight /> },
+        //   { path: "user/profile", element: <PageFive /> },
+        // ],
       },
   
       {
@@ -54,18 +55,18 @@ export default function Router() {
             ),
           },
           { path: "login-unprotected", element: <Login /> },
-          { path: "register-unprotected", element: <Register /> },
-          { path: "reset-password", element: <ResetPassword /> },
-          { path: "new-password", element: <NewPassword /> },
-          { path: "mobileVerification", element: <MobileVerification /> },
-          { path: "verify", element: <VerifyCode /> },
+          // { path: "register-unprotected", element: <Register /> },
+          // { path: "reset-password", element: <ResetPassword /> },
+          // { path: "new-password", element: <NewPassword /> },
+          // { path: "mobileVerification", element: <MobileVerification /> },
+          // { path: "verify", element: <VerifyCode /> },
         ],
       },
       {
         path: "*",
         element: <LogoOnlyLayout />,
         children: [
-          { path: "404", element: <NotFound /> },
+          //{ path: "404", element: <NotFound /> },
           { path: "*", element: <Navigate to="/dashboard/page1" replace /> },
         ],
       },
