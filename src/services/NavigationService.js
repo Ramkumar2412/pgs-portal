@@ -1,4 +1,4 @@
-import { PATH_AUTH, PATH_DASHBOARD } from '../routes/paths';
+import { PATH_AUTH, PATH_DASHBOARD } from 'src/routes/paths';
 
 const Navigation = {
   navigateToLogin() {

@@ -1,7 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
+// routes
 import Router from './routes';
+// theme
 import ThemeProvider from './theme';
+// components
 import ThemeSettings from './components/settings';
 import ScrollToTop from './components/ScrollToTop';
 import { ProgressBarStyle } from './components/ProgressBar';
@@ -9,13 +10,13 @@ import MotionLazyContainer from './components/animate/MotionLazyContainer';
 import { ToastBar, Toaster, toast } from 'react-hot-toast';
 import { Stack } from '@mui/material';
 
+// ----------------------------------------------------------------------
 
-function App() {
+export default function App() {
   return (
     <MotionLazyContainer>
       <ThemeProvider>
-        <ThemeSettings>
-        <Toaster
+        <ThemeSettings>  <Toaster
           toastOptions={{
             success: {
               style: {
@@ -47,7 +48,7 @@ function App() {
             },
           }}
         >
-             {(t) => (
+          {(t) => (
             <ToastBar toast={t}>
               {({ icon, message }) => (
                 <Stack
@@ -66,14 +67,11 @@ function App() {
             </ToastBar>
           )}
         </Toaster>
-        <ProgressBarStyle />
+          <ProgressBarStyle />
           <ScrollToTop />
           <Router />
-
         </ThemeSettings>
       </ThemeProvider>
     </MotionLazyContainer>
   );
 }
-
-export default App;

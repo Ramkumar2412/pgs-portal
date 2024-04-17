@@ -1,13 +1,13 @@
 // @mui
 import { Stack, Typography } from "@mui/material";
 // components
-import ObjectStorage from "src/modules/ObjectStorage";
-import { StorageConstants } from "src/constants/StorageConstants";
+import ObjectStorage from "../../../modules/ObjectStorage";
+import { StorageConstants } from "../../../constants/StorageConstants";
 import { useEffect, useState } from "react";
 import { get } from "lodash";
 import { toast } from "react-hot-toast";
-import Auth_API from "src/services/auth";
-import AuthService from "src/services/authService";
+import Auth_API from "../../../services/auth";
+import AuthService from "../../../services/authService";
 
 // ----------------------------------------------------------------------
 

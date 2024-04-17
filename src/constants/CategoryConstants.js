@@ -1,0 +1,11 @@
+export const venueId = '1';
+export const foodId = '2';
+export const invitationId = '3';
+export const giftsId = '4';
+export const photographyId = '5';
+export const liveStreamingId = '6';
+export const musicDanceAndArtsId = '7';
+export const mehendiArtistId = '8';
+export const makeupId = '9';
+export const transportationAndTourId = '10';
+export const planningAndDecorId = '11';
