@@ -23,12 +23,15 @@ import Logo from "../../components/Logo";
 import Image from "../../components/Image";
 // sections
 import LoginForm from "../../sections/auth/login/LoginForm";
+import AdminLogin from "src/sections/auth/login/AdminForm";
 
 // ----------------------------------------------------------------------
 
 const RootStyle = styled("div")(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
     display: "flex",
+    justifyContent: 'center',
+    height: '100vh'
   },
 }));
 
@@ -72,7 +75,9 @@ export default function Login() {
   return (
     <Page title="Login">
       <RootStyle>
-        <Stack sx={{justifyContent: 'space-between', height: '100vh'}}>
+        <Stack sx={{ display:"flex", justifyContent: 'space-between', height: '100vh'   ,  '@media (max-width: 600px)': {
+                    flexDirection: 'column',
+                },}}>
           <HeaderStyle>
             <Logo
               sx={{
@@ -94,12 +99,13 @@ export default function Login() {
           <Container>
             <ContentStyle>
               <Typography
-                variant="h2"
-                sx={{ mt: 2, mb: 3, textAlign: "center", fontWeight: "bold" }}
+                variant="h3"
+                sx={{ mt: 2, mb: 2, textAlign: "center", fontWeight: "bold" }}
               >
                 Welcome Back
               </Typography>
-              <LoginForm  />
+              {/* <LoginForm  /> */}
+              <AdminLogin />
             </ContentStyle>
             <Box sx={{ mt: 5,}}>
               <Image

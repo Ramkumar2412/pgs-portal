@@ -23,15 +23,22 @@ const AuthService = {
   getRemoteURL() {
     return process.env.REACT_APP_REMOTE_URL;
   },
-
+  
   getAuthCode() {
     return process.env.REACT_APP_AUTH_CODE;
+  },
+
+  getAdminAuthCode() {
+    return process.env.REACT_APP_ADMIN_AUTH_CODE;
   },
   getUserDetails(){
     return get(ObjectStorage.getItem(StorageConstants.USER_DETAILS),'data',{})
   }
+
+
+
 };
 
-
+console.log(AuthService);
 
 export default AuthService;

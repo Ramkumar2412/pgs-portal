@@ -17,7 +17,7 @@ const HeaderStyle = styled('header')(({ theme }) => ({
     padding: theme.spacing(5, 5, 0)
   }
 }));
-
+console.log(HeaderStyle);
 // ----------------------------------------------------------------------
 
 export default function LogoOnlyLayout() {

@@ -3,9 +3,12 @@ import AuthService from "./authService";
 import handleCallback from "./Callback";
 import { get } from "lodash";
 
-const API = AuthService.getRemoteURL();
+const API = AuthService.getRemoteURL() || 'http://13.234.180.189:9000/ops';
 const AuthCode = AuthService.getAuthCode();
 const accessToken = AuthService._getAccessToken();
+const AdminAuthCode = AuthService.getAdminAuthCode() || '4e7876444f4957677641464548305948';
+
+console.log(API);
 
 const Auth_API = {
 
@@ -38,6 +41,23 @@ const Auth_API = {
             AuthCode: AuthService.getAuthCode(),
           },
           body: JSON.stringify(options),
+        },
+        handleCallback(resolve, reject)
+      );
+    });
+  },
+
+  adminlogin(options) {
+    return new Promise((resolve, reject) => {
+      APIService.fetch(
+        `${API}/login`,
+        {
+          method: "POST",
+          body: JSON.stringify(options),
+          headers: {
+            AuthCode: AdminAuthCode,
+            "Content-Type": "application/json",
+          },
         },
         handleCallback(resolve, reject)
       );
