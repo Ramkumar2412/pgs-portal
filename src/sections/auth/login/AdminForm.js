@@ -26,6 +26,7 @@ import { StorageConstants } from "src/constants/StorageConstants";
 
 export default function AdminLogin () {
 
+  const navigate = useNavigate();
     const LoginSchema = Yup.object().shape({
         emailId: Yup.string().required("Email Id is required"),
         password:Yup.string().required("password is required")
@@ -56,8 +57,10 @@ export default function AdminLogin () {
       const response = await Auth_API.adminlogin(options);
       console.log("response", response);
       if (response) {
-        if (ErrorCodes.includes(get(response, "0.ErrCode"))) {
-          toast.error(get(response, "0.ErrDesc"));
+        if (response.result == true) {
+          navigate("/dashboard/modbus_configuration",{
+            replace:true
+          })
         } 
         // else 
         // {

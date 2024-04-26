@@ -3,10 +3,10 @@ import AuthService from "./authService";
 import handleCallback from "./Callback";
 import { get } from "lodash";
 
-const API = AuthService.getRemoteURL() || 'http://13.234.180.189:9000/ops';
+const API = AuthService.getRemoteURL();
 const AuthCode = AuthService.getAuthCode();
 const accessToken = AuthService._getAccessToken();
-const AdminAuthCode = AuthService.getAdminAuthCode() || '4e7876444f4957677641464548305948';
+const AdminAuthCode = AuthService.getAdminAuthCode();
 
 console.log(API);
 
@@ -55,7 +55,7 @@ const Auth_API = {
           method: "POST",
           body: JSON.stringify(options),
           headers: {
-            AuthCode: AdminAuthCode,
+            //AuthCode: AdminAuthCode,
             "Content-Type": "application/json",
           },
         },
