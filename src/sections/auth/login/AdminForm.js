@@ -58,16 +58,15 @@ export default function AdminLogin () {
       console.log("response", response);
       if (response) {
         if (response.result == true) {
-          navigate("/dashboard/modbus_configuration",{
-            replace:true
-          })
+          console.log("The password Matches");
+              const modbusConf = await Auth_API.getmodbusconf();
+              console.log(modbusConf);
+         
+          navigate("/auth/modbus", {
+            replace: true
+          });
         } 
-        // else 
-        // {
-        //   ObjectStorage.setItem(StorageConstants.ACCESS_TOKEN, {
-        //     token: get(response, "0.token"),
-        //   });
-        // }
+        console.log(response.result);
       }
     } catch (error) {
       console.error(error);

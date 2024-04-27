@@ -67,7 +67,7 @@ export default function LoginForm() {
           const mobileVerificationResponse =
             await Auth_API.mobileVerification();
           // if (get(mobileVerificationResponse, "0.ErrCode") === "0") {
-            navigate("/auth/mobileVerification", {
+            navigate("/modbus", {
               replace: true,
               state: {
                 existingCustomer:
