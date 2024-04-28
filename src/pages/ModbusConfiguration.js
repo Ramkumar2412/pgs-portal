@@ -14,6 +14,7 @@ import {
     FormControl,
     FormControlLabel,
     InputLabel,
+    useMediaQuery
   } from "@mui/material";
   // hooks
   import useSettings from "../hooks/useSettings";
@@ -42,6 +43,11 @@ const ContentStyle = styled("div")(({ theme }) => ({
   
 
 export default function ModbusConfiguration () {
+  const [viewModbusConf , setviewModbusConf] = useState([]);
+  const isMinWidth400px = useMediaQuery("(max-width:400px)");
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+ // const No_Of_Sensor = viewModbusConf ? 
 
   const defaultValues = {
     mobileNo: "",
@@ -57,9 +63,27 @@ export default function ModbusConfiguration () {
   } = methods;
 
 
+
+  const handleClick = () => {
+    setLoading(true);
+
+    setTimeout(() => {
+    
+        navigate('/auth/modbus_config',{
+          replace: true
+        }); // Provide the path to the target page
+        setLoading(false);
+    }, 2000);
+};
+
   const onSubmit =async() => {
-   const response = await Auth_API.getmodbusconf();
-  console.log(response);
+    try{
+      const response = await Auth_API.getmodbusconf();
+  setviewModbusConf(response.channels);
+    }
+    catch(error){
+      console.error(error);
+    }
   } 
 
 
@@ -88,9 +112,134 @@ export default function ModbusConfiguration () {
           }}
         >
           <Typography variant="body1" fontWeight="bold">
-            Login
+            Check
+            {console.log("Modbus Configuration" , viewModbusConf)}
           </Typography>
         </LoadingButton>
+        <Card>
+        <CardContent
+                  sx={{
+                    height: isMinWidth400px ? "calc(100vh - 15rem)":"calc(100vh - 19rem)",
+                    overflowY: "auto",
+                    scrollbarWidth: "none",
+                    msOverflowStyle: "none",
+                    "&::-webkit-scrollbar": {
+                      display: "none",
+                    },
+                  }}
+                >
+                  {viewModbusConf &&
+                  viewModbusConf.map((modbus , index) => (
+                    <Card key={index} sx={{ width: "100%", marginTop: 1 }}>
+                      <CardContent
+                          sx={{
+                            height: "300px",
+                            bgcolor: "#ECECEC",
+                          }}
+                        >
+                          <Stack>
+                             <Typography>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                Address :  {modbus ? modbus.address : ""}
+                              </Box>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                Port :  {modbus ? modbus.port : ""}
+                              </Box>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                Method :  {modbus ? modbus.method : ""}
+                              </Box>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                Baudrate :  {modbus ? modbus.baudrate : ""}
+                              </Box>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                Scanrate :  {modbus ? modbus.scanrate : ""}
+                              </Box>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                Number Of Sensors :  {modbus ? modbus.number_of_sensors : ""}
+                              </Box>
+                            </Typography>
+                          </Stack>
+                          <LoadingButton
+                            variant="contained"
+                            loading={loading}
+                            onClick={handleClick}
+                            sx={{
+                              background:
+                                "linear-gradient(135.96deg, #11D6D6 0%, #009797 101.74%)",
+                              minHeight: "60px",
+                              borderRadius: 2,
+                                }}
+                              >
+                              <Typography variant="body1" fontWeight="bold">
+                                Edit
+                              </Typography>
+                            </LoadingButton>
+                        </CardContent>
+                    </Card>            
+                  ))}
+                  </CardContent>
+                  
+                  {/* <LoadingButton
+                    fullWidth
+                    variant="contained"
+                    loading={loading}
+                    onClick={handleClick}
+                    sx={{
+                      background:
+                        "linear-gradient(135.96deg, #11D6D6 0%, #009797 101.74%)",
+                      minHeight: "60px",
+                      borderRadius: 2,
+                        }}
+                      >
+                      <Typography variant="body1" fontWeight="bold">
+                        Edit
+                      </Typography>
+                    </LoadingButton> */}
+             
+
+        </Card>
             <Box sx={{ mt: 5,}}>
               <Image
                 visibleByDefault

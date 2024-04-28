@@ -60,6 +60,16 @@ export default function Router() {
           </GuestGuard>
         ) },
 
+        
+        { 
+          path: "modbus_config", 
+          element: (
+          <GuestGuard>
+            <EditModbusConfiguration />
+          </GuestGuard>
+        ) },
+
+
       ],
     },
     {
@@ -80,3 +90,4 @@ const NotFound = Loadable(lazy(() => import("../pages/Page404")));
 const Login = Loadable(lazy(() => import("../pages/auth/Login")));
 
 const ModbusConfiguration = lazy(() => import("../pages/ModbusConfiguration"));
+const EditModbusConfiguration = lazy(() => import("../pages/EditModbusConfiguration"));

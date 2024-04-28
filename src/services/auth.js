@@ -81,6 +81,23 @@ const Auth_API = {
     })
   },
 
+  writemodbusconf(options) {
+    return new Promise((resolve, reject) => {
+      APIService.fetch(
+        `${API}/modbus_config`,
+        {
+          method: "POST",
+          body: JSON.stringify(options),
+          headers: {
+            //AuthCode: AdminAuthCode,
+            "Content-Type": "application/json",
+          },
+        },
+        handleCallback(resolve, reject)
+      );
+    });
+  },
+
   mobileVerification(options) {
     return new Promise((resolve, reject) => {
       console.log("Access Token:", accessToken);
