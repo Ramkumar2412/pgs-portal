@@ -2,6 +2,9 @@ import get from "lodash/get";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import * as Yup from "yup";
+import useSettings from "../hooks/useSettings";
+// components
+import Page from "../components/Page";
 // form
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -12,12 +15,15 @@ import {
   IconButton,
   InputAdornment,
   Stack,
+  Container,
+  Box,
   Typography,
 } from "@mui/material";
 
 import { RHFTextField, FormProvider } from "src/components/hook-form";
 import Auth_API from "src/services/auth";
 import { styled } from "@mui/material/styles";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 const ContentStyle = styled("div")(({ theme }) => ({
     maxWidth: 480,
@@ -30,6 +36,7 @@ const ContentStyle = styled("div")(({ theme }) => ({
 
 
 export default function EditModbusConfiguration () {
+  const { themeStretch } = useSettings();
     const navigate = useNavigate();
     const modbusSchema = Yup.object().shape({
         address: Yup.string().required("Address Id is required"),
@@ -58,7 +65,12 @@ export default function EditModbusConfiguration () {
         handleSubmit,
         formState: { errors, isSubmitting },
       } = methods;
-    
+      
+      const goToPrev = () => {
+        navigate("/auth/modbus");
+      };
+
+
       const onSubmit = async (data) => {
         try {
           const options = {
@@ -84,8 +96,29 @@ export default function EditModbusConfiguration () {
       };  
 
   return (
-    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-          <ContentStyle>
+    <Page title="Recent Booking">
+    <Container maxWidth={themeStretch ? false : "xl"}>
+      <Stack position={"column"}>
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+            <ContentStyle>
+              <Box
+                  sx={{
+                    width: "3rem",
+                    height: "3rem",
+                    borderRadius: 2,
+                    backgroundColor: "#FFFFFF",
+                    border: 1,
+                    borderColor: "#b7b7b7",
+                    color: "black",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  onClick={goToPrev}
+                >
+                  <ArrowBackIosNewIcon sx={{ color: "#08B4B4" }} fontSize="small" />
+                </Box>
               <Typography
                 variant="h3"
                 sx={{ mt: 2, mb: 2, textAlign: "center", fontWeight: "bold" }}
@@ -218,10 +251,14 @@ export default function EditModbusConfiguration () {
           }}
         >
           <Typography variant="body1" fontWeight="bold">
-            Login
+            Update
           </Typography>
         </LoadingButton>
       </Stack>
     </FormProvider>
+    </Stack>  
+    </Stack>
+      </Container>
+    </Page>
   );
 }  
