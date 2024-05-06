@@ -76,6 +76,18 @@ export default function ModbusConfiguration () {
     }, 2000);
 };
 
+
+const handleGateway = () => {
+  setLoading(true);
+
+  setTimeout(() => {
+  
+      navigate('/auth/gateway_config',{
+        replace: true
+      }); // Provide the path to the target page
+      setLoading(false);
+  }, 1000);
+};
   const onSubmit =async() => {
     try{
       const response = await Auth_API.getmodbusconf();
@@ -99,6 +111,25 @@ export default function ModbusConfiguration () {
                 Welcome Back
               </Typography>
             </ContentStyle>
+            <ContentStyle>
+            <LoadingButton
+            variant="contained"
+            loading={loading}
+            onClick={handleGateway}
+          sx={{
+            mt:2,
+            md:2,
+            background:
+              "linear-gradient(135.96deg, #11D6D6 0%, #009797 101.74%)",
+            minHeight: "60px",
+            borderRadius: 2,
+          }}
+        >
+          <Typography variant="body1" fontWeight="bold">
+            Gateway
+          </Typography>
+        </LoadingButton>
+        </ContentStyle>
             <LoadingButton
           fullWidth
           type="submit"
@@ -116,6 +147,7 @@ export default function ModbusConfiguration () {
             {console.log("Modbus Configuration" , viewModbusConf)}
           </Typography>
         </LoadingButton>
+
         <Card>
         <CardContent
                   sx={{

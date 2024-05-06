@@ -69,6 +69,14 @@ export default function Router() {
           </GuestGuard>
         ) },
 
+        { 
+          path: "gateway_config", 
+          element: (
+          <GuestGuard>
+            <EditGatewayConfiguration />
+          </GuestGuard>
+        ) },
+
 
       ],
     },
@@ -91,3 +99,4 @@ const Login = Loadable(lazy(() => import("../pages/auth/Login")));
 
 const ModbusConfiguration = lazy(() => import("../pages/ModbusConfiguration"));
 const EditModbusConfiguration = lazy(() => import("../pages/EditModbusConfiguration"));
+const EditGatewayConfiguration = lazy(() => import("../pages/EditGatewayConfiguration"));
