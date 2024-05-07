@@ -52,32 +52,45 @@ export default function Router() {
           ),
         },
 
-        { 
-          path: "modbus", 
-          element: (
-          <GuestGuard>
-            <ModbusConfiguration />
-          </GuestGuard>
-        ) },
+        // { 
+        //   path: "modbus", 
+        //   element: (
+        //   <GuestGuard>
+        //     <ModbusConfiguration />
+        //   </GuestGuard>
+        // ) },
 
         
-        { 
-          path: "modbus_config", 
-          element: (
-          <GuestGuard>
-            <EditModbusConfiguration />
-          </GuestGuard>
-        ) },
+        // { 
+        //   path: "modbus_config", 
+        //   element: (
+        //   <GuestGuard>
+        //     <EditModbusConfiguration />
+        //   </GuestGuard>
+        // ) },
 
-        { 
-          path: "gateway_config", 
-          element: (
-          <GuestGuard>
-            <EditGatewayConfiguration />
-          </GuestGuard>
-        ) },
+        // { 
+        //   path: "gateway_config", 
+        //   element: (
+        //   <GuestGuard>
+        //     <EditGatewayConfiguration />
+        //   </GuestGuard>
+        // ) },
 
 
+      ],
+    },
+    {
+      element: (
+        <GuestGuard>
+          <DashboardLayout />
+        </GuestGuard>
+      ),
+      path: "dashboard",
+      children: [
+        { path: "modbus", element: <ModbusConfiguration /> },
+        {path: "modbus_config", element:<EditModbusConfiguration/>},
+        { path: "gateway", element: <GatewayConfiguration /> },
       ],
     },
     {
@@ -100,3 +113,4 @@ const Login = Loadable(lazy(() => import("../pages/auth/Login")));
 const ModbusConfiguration = lazy(() => import("../pages/ModbusConfiguration"));
 const EditModbusConfiguration = lazy(() => import("../pages/EditModbusConfiguration"));
 const EditGatewayConfiguration = lazy(() => import("../pages/EditGatewayConfiguration"));
+const GatewayConfiguration = lazy(() => import("../pages/GatewayConfiguration"));

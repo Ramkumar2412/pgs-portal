@@ -62,8 +62,9 @@ export default function AdminLogin () {
               const modbusConf = await Auth_API.getmodbusconf();
               console.log(modbusConf);
          
-          navigate("/auth/modbus", {
-            replace: true
+          navigate("/dashboard/modbus", {
+            replace: true,
+            state:modbusConf,
           });
         } 
         console.log(response.result);
