@@ -318,7 +318,6 @@ export default function GatewayConfiguration () {
                             </Stack>
                             <LoadingButton
                             variant="contained"
-                            loading={loading}
                             onClick={handleClick}
                             sx={{
                               background:
