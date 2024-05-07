@@ -18,8 +18,8 @@ const navConfig = [
   {
     items: [
       {
-        title: 'Booking History',
-        path: '/dashboard/user/profile',
+        title: 'Gateway',
+        path: '/dashboard/gateway',
         icon: ICONS.blog,
       },
     ],

@@ -19,7 +19,7 @@ import {
   // hooks
   import useSettings from "../hooks/useSettings";
   import { useEffect, useState } from "react";
-  import { useNavigate } from "react-router-dom";
+  import { useNavigate , useLocation } from "react-router-dom";
   import { Toaster, toast } from "react-hot-toast";
   import Page from "../components/Page";
   import Image from "../components/Image"
@@ -43,24 +43,29 @@ const ContentStyle = styled("div")(({ theme }) => ({
   
 
 export default function ModbusConfiguration () {
-  const [viewModbusConf , setviewModbusConf] = useState([]);
+  //const [viewModbusConf , setviewModbusConf] = useState([]);
   const isMinWidth400px = useMediaQuery("(max-width:400px)");
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const location = useLocation();
+  const modbusConf = location.state.channels;
+  //setviewModbusConf(modbus.channels);
+
+  console.log("Modbus",modbusConf);
  // const No_Of_Sensor = viewModbusConf ? 
 
-  const defaultValues = {
-    mobileNo: "",
-  };
+  // const defaultValues = {
+  //   mobileNo: "",
+  // };
 
 
-  const methods = useForm({
-    defaultValues,
-  });
-  const {
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = methods;
+  // const methods = useForm({
+  //   defaultValues,
+  // });
+  // const {
+  //   handleSubmit,
+  //   formState: { errors, isSubmitting },
+  // } = methods;
 
 
 
@@ -69,7 +74,7 @@ export default function ModbusConfiguration () {
 
     setTimeout(() => {
     
-        navigate('/auth/modbus_config',{
+        navigate('/dashboard/modbus_config',{
           replace: true
         }); // Provide the path to the target page
         setLoading(false);
@@ -77,30 +82,20 @@ export default function ModbusConfiguration () {
 };
 
 
-const handleGateway = () => {
-  setLoading(true);
 
-  setTimeout(() => {
-  
-      navigate('/auth/gateway_config',{
-        replace: true
-      }); // Provide the path to the target page
-      setLoading(false);
-  }, 1000);
-};
-  const onSubmit =async() => {
-    try{
-      const response = await Auth_API.getmodbusconf();
-  setviewModbusConf(response.channels);
-    }
-    catch(error){
-      console.error(error);
-    }
-  } 
+  // const onSubmit =async() => {
+  //   try{
+  //     const response = await Auth_API.getmodbusconf();
+  // setviewModbusConf(response.channels);
+  //   }
+  //   catch(error){
+  //     console.error(error);
+  //   };
+  // };
 
 
     return(
-      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+
         <Page title="Modbus Configuration">
               <Container>
             <ContentStyle>
@@ -111,26 +106,8 @@ const handleGateway = () => {
                 Welcome Back
               </Typography>
             </ContentStyle>
-            <ContentStyle>
-            <LoadingButton
-            variant="contained"
-            loading={loading}
-            onClick={handleGateway}
-          sx={{
-            mt:2,
-            md:2,
-            background:
-              "linear-gradient(135.96deg, #11D6D6 0%, #009797 101.74%)",
-            minHeight: "60px",
-            borderRadius: 2,
-          }}
-        >
-          <Typography variant="body1" fontWeight="bold">
-            Gateway
-          </Typography>
-        </LoadingButton>
-        </ContentStyle>
-            <LoadingButton
+
+            {/* <LoadingButton
           fullWidth
           type="submit"
           variant="contained"
@@ -146,7 +123,7 @@ const handleGateway = () => {
             Check
             {console.log("Modbus Configuration" , viewModbusConf)}
           </Typography>
-        </LoadingButton>
+        </LoadingButton> */}
 
         <Card>
         <CardContent
@@ -160,8 +137,8 @@ const handleGateway = () => {
                     },
                   }}
                 >
-                  {viewModbusConf &&
-                  viewModbusConf.map((modbus , index) => (
+                  {modbusConf &&
+                  modbusConf.map((modbus , index) => (
                     <Card key={index} sx={{ width: "100%", marginTop: 1 }}>
                       <CardContent
                           sx={{
@@ -282,6 +259,5 @@ const handleGateway = () => {
             </Box>
           </Container>
       </Page>
-      </FormProvider>
     )
 }

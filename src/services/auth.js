@@ -97,6 +97,22 @@ const Auth_API = {
       );
     });
   },
+  readGatewayConf(options) {
+    return new Promise((resolve, reject) => {
+      APIService.fetch(
+        `${API}/gateway_config`,
+        {
+          method: "GET",
+          body: JSON.stringify(options),
+          headers: {
+            //AuthCode: AdminAuthCode,
+            "Content-Type": "application/json",
+          },
+        },
+        handleCallback(resolve, reject)
+      );
+    });
+  },
 
   mobileVerification(options) {
     return new Promise((resolve, reject) => {

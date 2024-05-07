@@ -67,7 +67,7 @@ export default function EditModbusConfiguration () {
       } = methods;
       
       const goToPrev = () => {
-        navigate("/auth/modbus");
+        navigate("/dashboard/modbus");
       };
 
 
@@ -84,8 +84,11 @@ export default function EditModbusConfiguration () {
           const response = await Auth_API.writemodbusconf(options);
           console.log("response", response);
           if (response) {
-              navigate("/auth/modbus", {
-                replace: true
+            const modbusConf = await Auth_API.getmodbusconf();
+              console.log(modbusConf);
+              navigate("/dashboard/modbus", {
+                replace: true,
+                state:modbusConf,
               });
             
             console.log(response);
