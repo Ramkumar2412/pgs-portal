@@ -292,7 +292,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                local_server :  {viewGatewayConf ? viewGatewayConf.local_server : ""}
+                                webserver_host :  {viewGatewayConf ? viewGatewayConf.webserver_host : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -302,7 +302,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                overhead_sensor :  {viewGatewayConf ? viewGatewayConf.overhead_sensor : ""}
+                                webserver_port :  {viewGatewayConf ? viewGatewayConf.webserver_port : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -312,7 +312,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                ramp_sensor :  {viewGatewayConf ? viewGatewayConf.ramp_sensor : ""}
+                                conf :  {viewGatewayConf ? viewGatewayConf.conf : ""}
                               </Box>
 
                             </Stack>

@@ -39,20 +39,14 @@ export default function EditModbusConfiguration () {
   const { themeStretch } = useSettings();
     const navigate = useNavigate();
     const modbusSchema = Yup.object().shape({
-        address: Yup.string().required("Address Id is required"),
+        host: Yup.string().required("Address Id is required"),
         port:Yup.string().required("Port is required"),
-        method: Yup.string().required("Method Id is required"),
-        baudrate:Yup.number().required("Baurdrate is required"),
-        scanrate: Yup.number().required("Scanrate is required"),
-        number_of_sensors:Yup.number().required("Sensor is required")
+        conf: Yup.string().required("Method Id is required")
       });
       const defaultValues = {
-        address: "",
+        hodt: "",
         port:"",
-        method: "",
-        baudrate:"",
-        scanrate: "",
-        number_of_sensors:"",
+        conf: "",
 
       };
     
@@ -67,19 +61,16 @@ export default function EditModbusConfiguration () {
       } = methods;
       
       const goToPrev = () => {
-        navigate("/dashboard/modbus");
+        navigate("/dashboard/gateway");
       };
 
 
       const onSubmit = async (data) => {
         try {
           const options = {
-            address: data.address,
+            host: data.host,
             port:data.port,
-            method: data.method,
-            baudrate:data.baudrate,
-            scanrate: data.scanrate,
-            number_of_sensors:data.number_of_sensors
+            conf: data.conf
           };
           const response = await Auth_API.writemodbusconf(options);
           console.log("response", response);
