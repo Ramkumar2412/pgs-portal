@@ -20,6 +20,19 @@ const navConfig = [
       {
         title: 'Gateway',
         path: '/dashboard/gateway',
+        replace:true,
+        icon: ICONS.blog,
+      },
+      {
+        title: 'Modbus',
+        path: '/dashboard/modbus',
+        replace:true, 
+        icon: ICONS.blog,
+      },
+      {
+        title: 'Sensor Configuration',
+        path: '/dashboard/sensor',
+        replace:true, 
         icon: ICONS.blog,
       },
     ],

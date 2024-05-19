@@ -83,14 +83,20 @@ export default function Router() {
     {
       element: (
         <GuestGuard>
+          <Suspense>
           <DashboardLayout />
+          </Suspense>
         </GuestGuard>
+        
       ),
       path: "dashboard",
       children: [
+        
         { path: "modbus", element: <ModbusConfiguration /> },
-        {path: "modbus_config", element:<EditModbusConfiguration/>},
         { path: "gateway", element: <GatewayConfiguration /> },
+        {path: "modbus_config", element:<EditModbusConfiguration/>},
+        
+        {path : "gateway_config",element:<EditGatewayConfiguration />}
       ],
     },
     {
