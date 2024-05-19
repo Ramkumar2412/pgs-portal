@@ -35,23 +35,23 @@ const ContentStyle = styled("div")(({ theme }) => ({
   }));
 
 
-export default function EditModbusConfiguration () {
+export default function EditGatewayConfiguration () {
   const { themeStretch } = useSettings();
     const navigate = useNavigate();
-    const modbusSchema = Yup.object().shape({
-        host: Yup.string().required("Address Id is required"),
-        port:Yup.string().required("Port is required"),
+    const gatewaySchema = Yup.object().shape({
+      webserver_host: Yup.string().required("Address Id is required"),
+      webserver_port:Yup.string().required("Port is required"),
         conf: Yup.string().required("Method Id is required")
       });
       const defaultValues = {
-        hodt: "",
-        port:"",
+        webserver_host: "",
+        webserver_port:"",
         conf: "",
 
       };
     
       const methods = useForm({
-        resolver: yupResolver(modbusSchema),
+        resolver: yupResolver(gatewaySchema),
         defaultValues,
       });
     
@@ -68,14 +68,14 @@ export default function EditModbusConfiguration () {
       const onSubmit = async (data) => {
         try {
           const options = {
-            host: data.host,
-            port:data.port,
+            webserver_host: data.webserver_host,
+            webserver_port:data.webserver_port,
             conf: data.conf
           };
-          const response = await Auth_API.writemodbusconf(options);
+          const response = await Auth_API.writeGatewayConf(options);
           console.log("response", response);
           if (response) {
-              navigate("/dashboard/modbus", {
+              navigate("/dashboard/gateway", {
                 replace: true
               });
             
@@ -87,7 +87,7 @@ export default function EditModbusConfiguration () {
       };  
 
   return (
-    <Page title="Recent Booking">
+    <Page title="Gateway Configuration">
     <Container maxWidth={themeStretch ? false : "xl"}>
       <Stack position={"column"}>
         <Stack direction="row" alignItems="center" spacing={1}>
@@ -114,7 +114,7 @@ export default function EditModbusConfiguration () {
                 variant="h3"
                 sx={{ mt: 2, mb: 2, textAlign: "center", fontWeight: "bold" }}
               >
-                Modbus Configuration
+                Gateway Configuration
               </Typography>
             </ContentStyle>
       <Stack spacing={3}>
@@ -136,11 +136,11 @@ export default function EditModbusConfiguration () {
               fontSize: "8px",
             }}
           >
-            Address
+            Host
           </Typography>
           <RHFTextField
             sx={{ borderRadius: 5 }}
-            name="address"
+            name="webserver_host"
             label="Enter the Valid Password"
           />
         </Stack>
@@ -157,7 +157,7 @@ export default function EditModbusConfiguration () {
           </Typography>
           <RHFTextField
             sx={{ borderRadius: 10 }}
-            name="port"
+            name="webserver_port"
             label="Enter the Valid Password"
           />
         </Stack>
@@ -170,65 +170,17 @@ export default function EditModbusConfiguration () {
               fontSize: "8px",
             }}
           >
-            Method
+            Config
           </Typography>
           <RHFTextField
             sx={{ borderRadius: 10 }}
-            name="method"
+            name="conf"
             label="Enter the Valid Password"
           />
         </Stack>
-        <Stack spacing={1}>
-          <Typography
-            variant="h4"
-            sx={{
-              textAlign: "left",
-              fontWeight: "normal",
-              fontSize: "8px",
-            }}
-          >
-            Baudrate
-          </Typography>
-          <RHFTextField
-            sx={{ borderRadius: 10 }}
-            name="baudrate"
-            label="Enter the Valid Password"
-          />
-        </Stack>
-        <Stack spacing={1}>
-          <Typography
-            variant="h4"
-            sx={{
-              textAlign: "left",
-              fontWeight: "normal",
-              fontSize: "8px",
-            }}
-          >
-            Scanrate
-          </Typography>
-          <RHFTextField
-            sx={{ borderRadius: 10 }}
-            name="scanrate"
-            label="Enter the Valid Password"
-          />
-        </Stack>
-        <Stack spacing={1}>
-          <Typography
-            variant="h4"
-            sx={{
-              textAlign: "left",
-              fontWeight: "normal",
-              fontSize: "8px",
-            }}
-          >
-            Sensors
-          </Typography>
-          <RHFTextField
-            sx={{ borderRadius: 10 }}
-            name="number_of_sensors"
-            label="Enter the Valid Password"
-          />
-        </Stack>
+
+     
+     
         <LoadingButton
           fullWidth
           type="submit"

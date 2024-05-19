@@ -43,31 +43,28 @@ const ContentStyle = styled("div")(({ theme }) => ({
   
 
 export default function ModbusConfiguration () {
-  //const [viewModbusConf , setviewModbusConf] = useState([]);
+  const [viewModbusConf , setviewModbusConf] = useState([]);
   const isMinWidth400px = useMediaQuery("(max-width:400px)");
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const location = useLocation();
-  const modbusConf = location.state.channels;
-  //setviewModbusConf(modbus.channels);
-
-  console.log("Modbus",modbusConf);
- // const No_Of_Sensor = viewModbusConf ? 
-
-  // const defaultValues = {
-  //   mobileNo: "",
-  // };
 
 
-  // const methods = useForm({
-  //   defaultValues,
-  // });
-  // const {
-  //   handleSubmit,
-  //   formState: { errors, isSubmitting },
-  // } = methods;
-
-
+  useEffect(() => {
+    setLoading(true);
+    modbusConfiguration();
+  }, []);
+  
+  const modbusConfiguration = async() => {
+    try{
+        const response = await Auth_API.getmodbusconf();
+        console.log("response",response);
+        setviewModbusConf(response.channels);
+    }
+    catch(error){
+        console.error(error);
+    }
+}
 
   const handleClick = () => {
     setLoading(true);
@@ -78,22 +75,16 @@ export default function ModbusConfiguration () {
           replace: true
         }); // Provide the path to the target page
         setLoading(false);
-    }, 2000);
+    }, 1000);
 };
 
 
 
-  // const onSubmit =async() => {
-  //   try{
-  //     const response = await Auth_API.getmodbusconf();
-  // setviewModbusConf(response.channels);
-  //   }
-  //   catch(error){
-  //     console.error(error);
-  //   };
-  // };
+console.log("viewModbusConf",viewModbusConf);
+ // const modbusConf = location.state.channels;
+  //setviewModbusConf(modbus.channels);
 
-
+  //console.log("Modbus",modbusConf);
     return(
 
         <Page title="Modbus Configuration">
@@ -107,23 +98,7 @@ export default function ModbusConfiguration () {
               </Typography>
             </ContentStyle>
 
-            {/* <LoadingButton
-          fullWidth
-          type="submit"
-          variant="contained"
-          loading={isSubmitting}
-          sx={{
-            background:
-              "linear-gradient(135.96deg, #11D6D6 0%, #009797 101.74%)",
-            minHeight: "60px",
-            borderRadius: 2,
-          }}
-        >
-          <Typography variant="body1" fontWeight="bold">
-            Check
-            {console.log("Modbus Configuration" , viewModbusConf)}
-          </Typography>
-        </LoadingButton> */}
+    
 
         <Card>
         <CardContent
@@ -137,8 +112,8 @@ export default function ModbusConfiguration () {
                     },
                   }}
                 >
-                  {modbusConf &&
-                  modbusConf.map((modbus , index) => (
+                  {viewModbusConf &&
+                  viewModbusConf.map((modbus , index) => (
                     <Card key={index} sx={{ width: "100%", marginTop: 1 }}>
                       <CardContent
                           sx={{
@@ -212,7 +187,6 @@ export default function ModbusConfiguration () {
                           </Stack>
                           <LoadingButton
                             variant="contained"
-                            loading={loading}
                             onClick={handleClick}
                             sx={{
                               background:

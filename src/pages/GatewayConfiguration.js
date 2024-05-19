@@ -12,7 +12,7 @@ import { styled } from "@mui/material/styles";
 import Page from "../components/Page";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useNavigate } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState ,startTransition } from "react";
 import Auth_API from "src/services/auth";
 import { LoadingButton } from "@mui/lab";
 
@@ -31,12 +31,18 @@ export default function GatewayConfiguration () {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
+
+    useEffect(() => {
+      setLoading(true);
+      gatewayConfiguration();
+    }, []);
+
     const handleClick = () => {
-        //setLoading(true);
+        setLoading(true);
     
         setTimeout(() => {
         
-            navigate('/dashboard/modbus_config',{
+            navigate('/dashboard/gateway_config',{
               replace: true
             }); // Provide the path to the target page
             setLoading(false);
@@ -52,12 +58,8 @@ export default function GatewayConfiguration () {
             console.error(error);
         }
     }
-    useEffect(() => {
-        setLoading(true);
-        gatewayConfiguration();
-      }, []);
 
-    console.log("viewGatewayConf",viewGatewayConf);
+  console.log("viewGatewayConf",viewGatewayConf);
 
 
     return(
