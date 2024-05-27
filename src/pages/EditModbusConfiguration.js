@@ -99,7 +99,7 @@ export default function EditModbusConfiguration () {
       };  
 
   return (
-    <Page title="Recent Booking">
+    <Page title="Modbus">
     <Container maxWidth={themeStretch ? false : "xl"}>
       <Stack position={"column"}>
         <Stack direction="row" alignItems="center" spacing={1}>
