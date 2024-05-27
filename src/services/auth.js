@@ -131,6 +131,21 @@ const Auth_API = {
     });
   },
 
+  readSensor(slaveId) {
+    return new Promise((resolve, reject) => {
+      APIService.request(
+        {
+          url: `${API}/sensor?slave_id=${slaveId}`,
+          method: "GET",
+          headers: {
+            //AuthCode: AdminAuthCode,
+            "Content-Type": "application/json",
+          },
+        },
+        handleCallback(resolve, reject)
+      );
+    });
+  },
 
 };
 export default Auth_API;

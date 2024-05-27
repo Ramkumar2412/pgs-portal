@@ -96,7 +96,8 @@ export default function Router() {
         { path: "gateway", element: <GatewayConfiguration /> },
         {path: "modbus_config", element:<EditModbusConfiguration/>},
         
-        {path : "gateway_config",element:<EditGatewayConfiguration />}
+        {path : "gateway_config",element:<EditGatewayConfiguration />},
+        {path : "sensor",element:<SensorConfiguration />},
       ],
     },
     {
@@ -120,3 +121,4 @@ const ModbusConfiguration = lazy(() => import("../pages/ModbusConfiguration"));
 const EditModbusConfiguration = lazy(() => import("../pages/EditModbusConfiguration"));
 const EditGatewayConfiguration = lazy(() => import("../pages/EditGatewayConfiguration"));
 const GatewayConfiguration = lazy(() => import("../pages/GatewayConfiguration"));
+const SensorConfiguration = lazy(() => import("../pages/SensorConfiguration"));
