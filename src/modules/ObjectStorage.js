@@ -26,3 +26,4 @@ export default {
     return localStorage.removeItem(key);
   },
 };
+console.log("setItem" ,setItem);

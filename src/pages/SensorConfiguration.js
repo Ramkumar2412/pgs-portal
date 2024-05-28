@@ -72,6 +72,19 @@ export default function SensorConfiguration () {
     } = methods;
 
 
+    const handleClick = () => {
+      setLoading(true);
+  
+      setTimeout(() => {
+      
+          navigate('/dashboard/sensor_config',{
+            replace: true
+          }); // Provide the path to the target page
+          setLoading(false);
+      }, 1000);
+  };
+  
+
 
   const onSubmit = async (data) => {
     try {
@@ -104,135 +117,187 @@ export default function SensorConfiguration () {
                   Sensor
                 </Typography>
               </ContentStyle>
-        <Stack spacing={3}>
-          {!!errors.afterSubmit && (
-            <Alert severity="error">
-              {get(
-                errors,
-                "afterSubmit.0.ErrDesc",
-                get(errors, "afterSubmit.message")
-              )}
-            </Alert>
-          )}
-         <Stack spacing={1}>
-            <Typography
-              variant="h4"
-              sx={{
-                textAlign: "left",
-                fontWeight: "normal",
-                fontSize: "8px",
-              }}
-            >
-              Sensor
-            </Typography>
-            <RHFTextField
-              sx={{ borderRadius: 5 }}
-              name="slave_id"
-              label="Enter the Valid Password"
-            />
-          </Stack>
-        
- 
-  
-       
-       
-          <LoadingButton
-            fullWidth
-            type="submit"
-            variant="contained"
-            loading={isSubmitting}
-            sx={{
-              background:
-                "linear-gradient(135.96deg, #11D6D6 0%, #009797 101.74%)",
-              minHeight: "60px",
-              borderRadius: 2,
-            }}
-          >
-            <Typography variant="body1" fontWeight="bold">
-              Read
-            </Typography>
-          </LoadingButton>
+                <Stack spacing={3}>
+                  {!!errors.afterSubmit && (
+                    <Alert severity="error">
+                      {get(
+                        errors,
+                        "afterSubmit.0.ErrDesc",
+                        get(errors, "afterSubmit.message")
+                      )}
+                    </Alert>
+                  )}
+                <Stack spacing={1}>
+                    <Typography
+                      variant="h4"
+                      sx={{
+                        textAlign: "left",
+                        fontWeight: "normal",
+                        fontSize: "8px",
+                      }}
+                    >
+                      Sensor
+                    </Typography>
+                    <RHFTextField
+                      sx={{ borderRadius: 5 }}
+                      name="slave_id"
+                      label="Enter the Valid sensor"
+                    />
+                  </Stack>
+                  <LoadingButton
+                      fullWidth
+                      type="submit"
+                      variant="contained"
+                      loading={isSubmitting}
+                      sx={{
+                        background:
+                          "linear-gradient(135.96deg, #11D6D6 0%, #009797 101.74%)",
+                        minHeight: "60px",
+                        borderRadius: 2,
+                      }}
+                    >
+                      <Typography variant="body1" fontWeight="bold">
+                        Read
+                      </Typography>
+                    </LoadingButton>
         </Stack>
-        <Card sx={{ width: "100%", minHeight: "calc(100vh - 24rem)" }}>
-          <CardContent>
-            <Stack>
-              <Typography
-                sx={{ width: "100%", minHeight: "calc(50vh - 25rem)" }}
-                variant="h6"
-                component="div"
-              >
-                
-                {get(sensorConfig, "free_min", "")}
-              </Typography>
-              <Typography
-                sx={{
-                  position: "absolute",
-                  left: 0,
-                  top: 60,
-                  background:
-                    "linear-gradient(135.96deg, #11D6D6 0%, #009797 101.74%)",
-                  color: "white",
-                  fontWeight: "bold",
-                  borderTopRightRadius: 50,
-                  borderBottomRightRadius: 50,
-                  fontSize: "22px",
-                  px: 4,
-                  pr: 4,
-                }}
-              >
-                {get(sensorConfig, "parked_max", "")}
-              </Typography>
+
       
-            </Stack>
-            <Grid container spacing={2} sx={{ marginTop: 5, marginBottom: 2 }}>
-              <Grid item xs={12}>
-                <Card
-                  sx={{
-                    width: "100%",
-                    minHeight: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <CardContent
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                
-                  
-                   
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item xs={12}>
-                <Card
-                  sx={{
-                    width: "100%",
-                    minHeight: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <CardContent
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                   
-                  
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid>
-     
-          </CardContent>
-        </Card>
       </FormProvider>
       </Stack>  
       </Stack>
+
+
+      <Card sx={{ width: "100%", minHeight: "calc(100vh - 24rem)" }}>
+        <CardContent
+                          sx={{
+                            height: "500px",
+                            bgcolor: "#ECECEC",
+                          }}
+                        >
+
+             <Stack>
+                             <Typography>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                slaveID :  {sensorConfig ? sensorConfig.slaveID : ""}
+                              </Box>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                parked_color :  {sensorConfig ? sensorConfig.parked_color : ""}
+                              </Box>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                Free_colour :  {sensorConfig ? sensorConfig.Free_colour : ""}
+                              </Box>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                offset :  {sensorConfig ? sensorConfig.offset : ""}
+                              </Box>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                parked_min :  {sensorConfig ? sensorConfig.parked_min : ""}
+                              </Box>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                parked_max :  {sensorConfig ? sensorConfig.parked_max : ""}
+                              </Box>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                free_min :  {sensorConfig ? sensorConfig.free_min : ""}
+                              </Box>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                free_max :  {sensorConfig ? sensorConfig.free_max : ""}
+                              </Box>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                Timeout :  {sensorConfig ? sensorConfig.Timeout : ""}
+                              </Box>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                Configure :  {sensorConfig ? sensorConfig.Configure : ""}
+                              </Box>
+                            </Typography>
+                          </Stack>
+                          <LoadingButton
+                            variant="contained"
+                            onClick={handleClick}
+                            sx={{
+                              background:
+                                "linear-gradient(135.96deg, #11D6D6 0%, #009797 101.74%)",
+                              minHeight: "60px",
+                              borderRadius: 2,
+                                }}
+                              >
+                              <Typography variant="body1" fontWeight="bold">
+                                Edit
+                              </Typography>
+                            </LoadingButton>
+    
+     
+          </CardContent>
+        </Card>
         </Container>
       </Page>
     );
