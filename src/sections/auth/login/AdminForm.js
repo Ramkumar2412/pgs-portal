@@ -55,22 +55,30 @@ export default function AdminLogin () {
         password:data.password
       };
       const response = await Auth_API.adminlogin(options);
+      const ErrCode = response.ErrCode;
+      console.log("ErrCode",ErrCode);
       console.log("response", response);
       if (response) {
+        ObjectStorage.setItem(StorageConstants.USER_DETAILS,{
+          data:response,
+        });
         if (response.result == true) {
           console.log("The password Matches");
               const modbusConf = await Auth_API.getmodbusconf();
               console.log(modbusConf);
-         
+           
+         console.log()
           navigate("/dashboard/modbus", {
             replace: true,
             state:modbusConf,
           });
         } 
+       
         console.log(response.result);
       }
     } catch (error) {
       console.error(error);
+      toast.error(error.detail);
     }
   };
 

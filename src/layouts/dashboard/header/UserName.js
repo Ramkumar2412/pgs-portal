@@ -13,6 +13,7 @@ import AuthService from "../../../services/authService";
 
 export default function UserName() {
 const userDetails = AuthService.getUserDetails()
+console.log("UserDetails" , userDetails);
 const {firstname, lastname} =userDetails;
 const employeeName = `${firstname} ${lastname}`
   return (

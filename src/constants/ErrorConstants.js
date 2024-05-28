@@ -54,6 +54,7 @@ export const CatchErrorValidationConstants = {
 };
 
 export const ErrorCodes = [
+  "401",
   "233",
   "600",
   "719",
