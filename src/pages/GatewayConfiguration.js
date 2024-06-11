@@ -15,6 +15,7 @@ import { useNavigate } from "react-router";
 import { useEffect, useState ,startTransition } from "react";
 import Auth_API from "src/services/auth";
 import { LoadingButton } from "@mui/lab";
+import _ from "lodash";
 
 const ContentStyle = styled("div")(({ theme }) => ({
     maxWidth: 480,
@@ -37,6 +38,16 @@ export default function GatewayConfiguration () {
       gatewayConfiguration();
     }, []);
 
+    const gatewayConfiguration = async() => {
+      try{
+          const response = await Auth_API.readGatewayConf();
+          setviewGatewayConf(response.result);
+      }
+      catch(error){
+          console.error(error);
+      }
+  }
+
     const handleClick = () => {
         setLoading(true);
     
@@ -49,17 +60,12 @@ export default function GatewayConfiguration () {
         }, 1000);
     };
 
-    const gatewayConfiguration = async() => {
-        try{
-            const response = await Auth_API.readGatewayConf();
-            setviewGatewayConf(response.result);
-        }
-        catch(error){
-            console.error(error);
-        }
-    }
 
+
+    //const gateway = JSON.parse(viewGatewayConf);
   console.log("viewGatewayConf",viewGatewayConf);
+
+  //console.log("serial_terminal " , _.get(viewGatewayConf ,'serial_terminal','default'));
 
 
     return(

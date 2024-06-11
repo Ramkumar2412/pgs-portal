@@ -81,7 +81,8 @@ export default function EditGatewayConfiguration () {
             
             console.log(response);
           }
-        } catch (error) {
+        } 
+        catch (error) {
           console.error(error);
         }
       };  
