@@ -163,7 +163,7 @@ const APIService = {
         if (includes([200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210], response.status)) {
           return cb(null, parsedResponse);
         }
-        if (!includes([200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 400, 404], response.status)) {
+        if (!includes([200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 400, 404,401,301], response.status)) {
           console.log(parsedResponse.message || 'Error Occurred');
         }
         if (status === 400) {

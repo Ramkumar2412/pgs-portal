@@ -163,5 +163,22 @@ const Auth_API = {
     });
   },
 
+  SensorData(options) {
+    return new Promise((resolve, reject) => {
+      APIService.fetch(
+        `${API}/sensor_data`,
+        {
+          method: "POST",
+          body: JSON.stringify(options),
+          headers: {
+            //AuthCode: AdminAuthCode,
+            "Content-Type": "application/json",
+          },
+        },
+        handleCallback(resolve, reject)
+      );
+    });
+  },
+
 };
 export default Auth_API;

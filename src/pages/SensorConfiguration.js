@@ -36,6 +36,8 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import { ErrorCodes } from "src/constants/ErrorConstants";
 import Loader from "src/components/Loader";
 import Auth_API from "src/services/auth";
+// import { toasts } from "react-toastify";
+// import 'react-toastify/dist/ReactToastify.css';
 const ContentStyle = styled("div")(({ theme }) => ({
     maxWidth: 480,
     margin: "auto",
@@ -99,6 +101,7 @@ export default function SensorConfiguration () {
       }
     } catch (error) {
       console.error(error);
+      toast(error.message);
     }
   }; 
   
@@ -120,11 +123,9 @@ export default function SensorConfiguration () {
                 <Stack spacing={3}>
                   {!!errors.afterSubmit && (
                     <Alert severity="error">
-                      {get(
-                        errors,
-                        "afterSubmit.0.ErrDesc",
+                      {
                         get(errors, "afterSubmit.message")
-                      )}
+                      }
                     </Alert>
                   )}
                 <Stack spacing={1}>

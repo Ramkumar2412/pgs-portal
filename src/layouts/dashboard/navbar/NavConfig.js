@@ -35,6 +35,12 @@ const navConfig = [
         replace:true, 
         icon: ICONS.blog,
       },
+      {
+        title: 'Sensor',
+        path: '/dashboard/sensor_data',
+        replace:true, 
+        icon: ICONS.blog,
+      },
     ],
   },  
 ];
