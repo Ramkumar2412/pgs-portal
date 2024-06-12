@@ -24,7 +24,8 @@ import { RHFTextField, FormProvider } from "src/components/hook-form";
 import Auth_API from "src/services/auth";
 import { styled } from "@mui/material/styles";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 const ContentStyle = styled("div")(({ theme }) => ({
     maxWidth: 480,
     margin: "auto",
@@ -104,6 +105,7 @@ export default function EditSensorConfiguration () {
           }
         } catch (error) {
           console.error(error);
+          toast(error);
         }
       };  
 
@@ -113,6 +115,15 @@ export default function EditSensorConfiguration () {
       <Stack position={"column"}>
         <Stack direction="row" alignItems="center" spacing={1}>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+          {!!errors.afterSubmit && (
+          <Alert severity="error">
+            {get(
+              errors,
+              "afterSubmit.0.ErrDesc",
+              get(errors, "afterSubmit.message")
+            )}
+          </Alert>
+        )}
             <ContentStyle>
               <Box
                   sx={{

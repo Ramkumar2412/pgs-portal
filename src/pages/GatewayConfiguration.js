@@ -91,30 +91,6 @@ export default function GatewayConfiguration () {
                     },
                   }}
                 >
-                    {/* {viewGatewayConf &&
-                    viewGatewayConf.map((gateway, index) => {
-                        <Card key={index} sx={{ width: "100%", marginTop: 1 }}>
-                             <CardContent
-                          sx={{
-                            height: "300px",
-                            bgcolor: "#ECECEC",
-                          }}
-                        >
-                            <Stack>
-                            <Box
-                                sx={{
-                                  marginBottom: 1,
-                                  marginTop: 1,
-                                  mr: 2,
-                                  fontWeight: "Bold",
-                                }}
-                              >
-                                serial_terminal :  {gateway ? gateway.serial_terminal : ""}
-                              </Box>
-                            </Stack>
-                        </CardContent>
-                        </Card>
-                    })} */}
                              <CardContent
                           sx={{
                             height: "900px",
@@ -324,7 +300,9 @@ export default function GatewayConfiguration () {
                               </Box>
 
                             </Stack>
-                            <LoadingButton
+                           
+                        </CardContent>
+                        <LoadingButton
                             variant="contained"
                             onClick={handleClick}
                             sx={{
@@ -338,7 +316,6 @@ export default function GatewayConfiguration () {
                                 Edit
                               </Typography>
                             </LoadingButton>
-                        </CardContent>
                 </CardContent>
             </Card>
 

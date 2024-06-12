@@ -52,31 +52,6 @@ export default function Router() {
           ),
         },
 
-        // { 
-        //   path: "modbus", 
-        //   element: (
-        //   <GuestGuard>
-        //     <ModbusConfiguration />
-        //   </GuestGuard>
-        // ) },
-
-        
-        // { 
-        //   path: "modbus_config", 
-        //   element: (
-        //   <GuestGuard>
-        //     <EditModbusConfiguration />
-        //   </GuestGuard>
-        // ) },
-
-        // { 
-        //   path: "gateway_config", 
-        //   element: (
-        //   <GuestGuard>
-        //     <EditGatewayConfiguration />
-        //   </GuestGuard>
-        // ) },
-
 
       ],
     },
@@ -99,6 +74,7 @@ export default function Router() {
         {path : "gateway_config",element:<EditGatewayConfiguration />},
         {path : "sensor",element:<SensorConfiguration />},
         {path:"sensor_config",element:<EditSensorConfiguration />},
+        {path : "sensor_data",element:<SensorData /> , Component : SensorData},
       ],
     },
     {
@@ -124,3 +100,4 @@ const EditGatewayConfiguration = lazy(() => import("../pages/EditGatewayConfigur
 const GatewayConfiguration = lazy(() => import("../pages/GatewayConfiguration"));
 const SensorConfiguration = lazy(() => import("../pages/SensorConfiguration"));
 const EditSensorConfiguration = lazy(() => import("../pages/EditSensorConfiguration"));
+const SensorData = lazy(() => import("../pages/sensorData"));

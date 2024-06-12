@@ -185,7 +185,12 @@ console.log("viewModbusConf",viewModbusConf);
                               </Box>
                             </Typography>
                           </Stack>
-                          <LoadingButton
+               
+                        </CardContent>
+                    </Card>            
+                  ))}
+                  </CardContent>
+                  <LoadingButton
                             variant="contained"
                             onClick={handleClick}
                             sx={{
@@ -199,27 +204,8 @@ console.log("viewModbusConf",viewModbusConf);
                                 Edit
                               </Typography>
                             </LoadingButton>
-                        </CardContent>
-                    </Card>            
-                  ))}
-                  </CardContent>
                   
-                  {/* <LoadingButton
-                    fullWidth
-                    variant="contained"
-                    loading={loading}
-                    onClick={handleClick}
-                    sx={{
-                      background:
-                        "linear-gradient(135.96deg, #11D6D6 0%, #009797 101.74%)",
-                      minHeight: "60px",
-                      borderRadius: 2,
-                        }}
-                      >
-                      <Typography variant="body1" fontWeight="bold">
-                        Edit
-                      </Typography>
-                    </LoadingButton> */}
+    
              
 
         </Card>
