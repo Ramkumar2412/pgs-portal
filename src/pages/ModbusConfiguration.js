@@ -103,7 +103,7 @@ console.log("viewModbusConf",viewModbusConf);
         <Card>
         <CardContent
                   sx={{
-                    height: isMinWidth400px ? "calc(100vh - 15rem)":"calc(100vh - 19rem)",
+                    height: "350px",
                     overflowY: "auto",
                     scrollbarWidth: "none",
                     msOverflowStyle: "none",

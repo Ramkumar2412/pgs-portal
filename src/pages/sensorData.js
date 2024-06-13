@@ -110,7 +110,7 @@ export default function SensorData () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                Sensor Id :  {sensor ? sensor.id : ""}
+                                Sensor Id :  {sensor ? sensor.external_slot_id : ""}
                               </Box>
                               <Box
                                 sx={{
