@@ -54,9 +54,14 @@ export default function SensorData () {
         return () => clearInterval(interval);
       }, []);
 
-    const sensorData = async () => {
+    const sensorData = async (data) => {
         try{
-            const response = await Auth_API.SensorData();
+          const options = {
+            external_slot_id : data.external_slot_id,
+            status : data.status,
+            height : data.height
+          };
+            const response = await Auth_API.SensorData(options);
         console.log("sensor_data" , response);
         setviewSensor(response.result);
         }
