@@ -166,7 +166,7 @@ const Auth_API = {
   SensorData(options) {
     return new Promise((resolve, reject) => {
       APIService.fetch(
-        `${API}/sensor_data`,
+        `${API}/slot_status_bulk_update`,
         {
           method: "POST",
           body: JSON.stringify(options),
