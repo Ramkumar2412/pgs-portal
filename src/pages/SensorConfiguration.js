@@ -52,6 +52,7 @@ export default function SensorConfiguration () {
 
   //const [viewSensorCount , setviewSensorCount] = useState([]);
   const [sensorConfig, setsensorConfig] = useState([]);
+  const [sensor , setSensor] = useState(false);
   const isMinWidth400px = useMediaQuery("(max-width:400px)");
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -95,9 +96,10 @@ export default function SensorConfiguration () {
       setsensorConfig(response);
       console.log("Sensor Configuration",sensorConfig);
       console.log("response", response);
-      if (response) {
+      if (Object.keys(response).includes('message')) {
          
         console.log(response);
+        toast(response.message);
       }
     } catch (error) {
       console.error(error);
