@@ -171,7 +171,7 @@ console.log("viewModbusConf",viewModbusConf);
                                   fontWeight: "Bold",
                                 }}
                               >
-                                Scanrate :  {modbus ? modbus.scanrate : ""}
+                                Scanrate :  {modbus ? modbus.full_scan_time : ""}
                               </Box>
                               <Box
                                 sx={{

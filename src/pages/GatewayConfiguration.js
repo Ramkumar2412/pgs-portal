@@ -146,7 +146,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                database :  {viewGatewayConf ? viewGatewayConf.database : ""}
+                                database :  {viewGatewayConf ? viewGatewayConf?.database : ""}
                               </Box>
                               <Box
                                 sx={{

@@ -19,6 +19,9 @@ import {
   // hooks
   import useSettings from "../hooks/useSettings";
   import { useEffect, useState } from "react";
+  import axios from 'axios';
+  import * as Yup from "yup";
+  import { yupResolver } from "@hookform/resolvers/yup";
   import { useNavigate , useLocation } from "react-router-dom";
   import { Toaster, toast } from "react-hot-toast";
   import Page from "../components/Page";
@@ -47,22 +50,45 @@ export default function SensorData () {
     const [viewSensor , setviewSensor] = useState([]);
     const isMinWidth400px = useMediaQuery("(max-width:400px)");
     const [loading, setLoading] = useState(false);
-    useEffect(() => {
+    const [requestBody, setRequestBody] = useState([]);
+
+    // const sensorSchema = Yup.object().shape({
+    //   external_slot_id: Yup.string(),
+    //   status:Yup.number(),
+    //   height: Yup.number()
+    //   });
+ 
+
+
+    //   const defaultValues = {
+    //     external_slot_id: "",
+    //     status:"",
+    //     height: ""
+    //   };
+    
+    //   const methods = useForm({
+    //     resolver: yupResolver(sensorSchema),
+    //     defaultValues,
+    //   });
+    
+    
+
+
+      useEffect(() => {
         setLoading(true);
         sensorData();
-       const interval = setInterval(() => sensorData() ,5000);
+       const interval = setInterval(() => sensorData() ,1000);
         return () => clearInterval(interval);
       }, []);
 
-    const sensorData = async (data) => {
+
+    const sensorData = async () => {
         try{
-          const options = {
-            external_slot_id : data.external_slot_id,
-            status : data.status,
-            height : data.height
-          };
-            const response = await Auth_API.SensorData(options);
-        console.log("sensor_data" , response);
+  
+            const response = await Auth_API.SensorData();
+
+        console.log("sensor_data from react" , response);
+     //   setRequestBody(response.data);
         setviewSensor(response.result);
         }
         catch(error){
@@ -72,7 +98,7 @@ export default function SensorData () {
     }
 
 
-    console.log("Sensor Data" , viewSensor);
+    console.log("Sensor Data from react" , viewSensor);
 
     return(
         <Page title="Sensor">
