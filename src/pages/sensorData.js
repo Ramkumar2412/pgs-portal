@@ -74,29 +74,55 @@ export default function SensorData () {
     
 
 
+      // useEffect(() => {
+      //   setLoading(true);
+        
+      //   sensorData();
+      //  const interval = setInterval(() => sensorData() ,1000);
+      //   return () => clearInterval(interval);
+      // }, []);
+
       useEffect(() => {
         setLoading(true);
-        sensorData();
-       const interval = setInterval(() => sensorData() ,1000);
+        
+        liveData();
+       const interval = setInterval(() => liveData() ,10000);
         return () => clearInterval(interval);
       }, []);
 
-
-    const sensorData = async () => {
-        try{
+    // const sensorData = async () => {
+    //     try{
   
-            const response = await Auth_API.SensorData();
+    //         const response = await Auth_API.SensorData();
 
-        console.log("sensor_data from react" , response);
-     //   setRequestBody(response.data);
-        setviewSensor(response.result);
-        }
-        catch(error){
-            console.error(error);
-        }
+    //     console.log("sensor_data from react" , response);
+    //  //   setRequestBody(response.data);
         
-    }
+    //     }
+    //     catch(error){
+    //         console.error(error);
+    //     }
+        
+    // }
+    const liveData = async() => {
+      try{
+       
+  
+  
+        // const response1 = await Auth_API.SensorData();
+        // console.log("slot status bulk api called api called",response1);
 
+        const response = await Auth_API.LiveData();
+        console.log("sensor_data from Live" , response);
+        setviewSensor(response.data);
+
+
+      }
+      catch(error){
+        console.error('Error fetching data:', error);
+      }
+   
+    }
 
     console.log("Sensor Data from react" , viewSensor);
 
@@ -124,10 +150,10 @@ export default function SensorData () {
                   }}
                 >{viewSensor &&
                     viewSensor.map((sensor , index) => ( 
-                    <Card key={index} sx={{ width: "25%", marginTop: 1 }}>
+                    <Card key={index} sx={{ width: "30%", marginTop: 1 }}>
                         <CardContent
                           sx={{
-                            height: "100px",
+                            height: "150px",
                             bgcolor: "#ECECEC",
                           }}
                         >
@@ -152,6 +178,16 @@ export default function SensorData () {
                                 }}
                               >
                                 Height :  {sensor ? sensor.height : ""}
+                              </Box>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                Status :  {sensor ? sensor.status : ""}
                               </Box>
                              </Typography>
                              </Stack>

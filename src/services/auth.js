@@ -179,6 +179,22 @@ const Auth_API = {
       );
     });
   },
-
+  
+  LiveData(options) {
+    return new Promise((resolve, reject) => {
+      APIService.fetch(
+        `${API}/sensor_data`,
+        {
+          method: "GET",
+          body: JSON.stringify(options),
+          headers: {
+            //AuthCode: AdminAuthCode,
+            "Content-Type": "application/json",
+          },
+        },
+        handleCallback(resolve, reject)
+      );
+    });
+  },
 };
 export default Auth_API;
