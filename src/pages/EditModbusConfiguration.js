@@ -20,7 +20,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { RHFTextField, FormProvider } from "src/components/hook-form";
+import { RHFTextField, FormProvider ,RHFSelect} from "src/components/hook-form";
 import Auth_API from "src/services/auth";
 import { styled } from "@mui/material/styles";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -43,15 +43,15 @@ export default function EditModbusConfiguration () {
         port:Yup.string().required("Port is required"),
         method: Yup.string().required("Method Id is required"),
         baudrate:Yup.number().required("Baurdrate is required"),
-        scanrate: Yup.number().required("Scanrate is required"),
+        full_scan_time: Yup.number().required("Scanrate is required"),
         number_of_sensors:Yup.number().required("Sensor is required")
       });
       const defaultValues = {
         address: "",
-        port:"",
-        method: "",
-        baudrate:"",
-        scanrate: "",
+        port:"/dev/ttySC0",
+        method: "rtu",
+        baudrate:"115200",
+        full_scan_time: "",
         number_of_sensors:"",
 
       };
@@ -78,7 +78,7 @@ export default function EditModbusConfiguration () {
             port:data.port,
             method: data.method,
             baudrate:data.baudrate,
-            scanrate: data.scanrate,
+            full_scan_time: data.full_scan_time,
             number_of_sensors:data.number_of_sensors
           };
           const response = await Auth_API.writemodbusconf(options);
@@ -98,6 +98,31 @@ export default function EditModbusConfiguration () {
         }
       };  
 
+
+     const communicationPort = [{
+       value : '/dev/ttySC0',
+       label : '/dev/ttySC0',
+     },{
+       value : '/dev/ttySC1',
+       label : '/dev/ttySC1',
+     },{
+       value : '/dev/ttyS0',
+       label : '/dev/ttyS0',
+     },{
+       value : '/dev/ttyS1',
+       label : 'dev/ttyS1',
+     }];
+
+   const CommunicationBaurdrate = [{
+       value: 115200,
+       label: '115200',
+     },{
+       value : 9600,
+       label : '9600',
+     },{
+       value : 14400,
+       label : '14400',
+    }];
   return (
     <Page title="Modbus">
     <Container maxWidth={themeStretch ? false : "xl"}>
@@ -167,10 +192,12 @@ export default function EditModbusConfiguration () {
           >
             Port
           </Typography>
-          <RHFTextField
+          <RHFSelect
             sx={{ borderRadius: 10 }}
             name="port"
-            label="Enter the Valid Password"
+            //label="select valid port"
+            options={communicationPort}
+            //defaultValue={'/dev/ttySC0'}
           />
         </Stack>
         <Stack spacing={1}>
@@ -201,10 +228,11 @@ export default function EditModbusConfiguration () {
           >
             Baudrate
           </Typography>
-          <RHFTextField
+          <RHFSelect
             sx={{ borderRadius: 10 }}
             name="baudrate"
             label="Enter the Valid Password"
+            options={CommunicationBaurdrate}
           />
         </Stack>
         <Stack spacing={1}>
@@ -220,7 +248,7 @@ export default function EditModbusConfiguration () {
           </Typography>
           <RHFTextField
             sx={{ borderRadius: 10 }}
-            name="scanrate"
+            name="full_scan_time"
             label="Enter the Valid Password"
           />
         </Stack>

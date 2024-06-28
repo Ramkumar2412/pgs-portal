@@ -1,6 +1,7 @@
 import get from "lodash/get";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+//import { useNavigate } from "react-router";
+import { useNavigate , useLocation } from "react-router-dom";
 import * as Yup from "yup";
 import useSettings from "../hooks/useSettings";
 // components
@@ -40,6 +41,9 @@ export default function EditSensorConfiguration () {
 
     const { themeStretch } = useSettings();
     const navigate = useNavigate();
+    const location = useLocation();
+    console.log("location",location);
+    let defaultValues;
     const sensorSchema = Yup.object().shape({
         slave_id: Yup.number().required("Slave Id is required"),
         parked_color:Yup.number().required("Parked Color sis required"),
@@ -50,30 +54,51 @@ export default function EditSensorConfiguration () {
         free_min:Yup.number().required("Free Minimum is required"),
         free_max: Yup.number().required("Free Maximum is required"),
         timeout:Yup.number().required("Time Out is required"),
-        configure:Yup.number().required("Configure is required"),
+       //configure:Yup.number().required("Configure is required"),
       });
-      const defaultValues = {
-        slave_id: "",
-        parked_color:"",
-        free_color: "",
-        offset:"",
-        parked_min: "",
-        parked_max:"",
-        free_min:"",
-        free_max:"",
-        timeout:"",
-        configure:""
-      };
-    
+
+      if(location.state == null){
+        defaultValues = {
+          slave_id: "",
+          parked_color:"",
+          free_color: "",
+          offset:"",
+          parked_min: "",
+          parked_max:"",
+          free_min:"",
+          free_max:"",
+          timeout:"",
+          //configure:""
+        };
+  
+      }
+      else{
+        defaultValues = {
+          slave_id : location.state.slaveID,
+          parked_color:location.state.parked_color,
+          free_color: location.state.Free_colour,
+          offset:location.state.offset,
+          parked_min:location.state.parked_min,
+          parked_max:location.state.parked_max,
+          free_min:location.state.free_min,
+          free_max:location.state.free_max,
+          timeout:location.state.Timeout,
+          //configure:location.state.configure
+        }
+     }
+     
       const methods = useForm({
         resolver: yupResolver(sensorSchema),
         defaultValues,
-      });
-    
+      });//
+
+
       const {
         handleSubmit,
         formState: { errors, isSubmitting },
       } = methods;
+    
+     
       
       const goToPrev = () => {
         navigate("/dashboard/sensor");
@@ -312,7 +337,7 @@ export default function EditSensorConfiguration () {
             label="Enter the Timeout"
           />
         </Stack>
-        <Stack spacing={1}>
+        {/* <Stack spacing={1}>
           <Typography
             variant="h4"
             sx={{
@@ -328,7 +353,7 @@ export default function EditSensorConfiguration () {
             name="configure"
             label="Enter the Parked Maximum"
           />
-        </Stack>
+        </Stack> */}
         <LoadingButton
           fullWidth
           type="submit"

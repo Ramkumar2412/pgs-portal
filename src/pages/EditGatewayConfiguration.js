@@ -1,8 +1,9 @@
 import get from "lodash/get";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+//import { useNavigate } from "react-router";
 import * as Yup from "yup";
 import useSettings from "../hooks/useSettings";
+import { useNavigate , useLocation } from "react-router-dom";
 // components
 import Page from "../components/Page";
 // form
@@ -20,7 +21,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { RHFTextField, FormProvider } from "src/components/hook-form";
+import { RHFTextField, FormProvider ,RHFSelect } from "src/components/hook-form";
 import Auth_API from "src/services/auth";
 import { styled } from "@mui/material/styles";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -38,17 +39,46 @@ const ContentStyle = styled("div")(({ theme }) => ({
 export default function EditGatewayConfiguration () {
   const { themeStretch } = useSettings();
     const navigate = useNavigate();
+    const location = useLocation();
+    console.log("location",location);
+    let defaultValues;
     const gatewaySchema = Yup.object().shape({
       webserver_host: Yup.string().required("Address Id is required"),
       webserver_port:Yup.string().required("Port is required"),
+      localserver_host: Yup.string().required("Address Id is required"),
+      localserver_port:Yup.string().required("Port is required"),
         conf: Yup.string().required("Method Id is required")
-      });
-      const defaultValues = {
-        webserver_host: "",
-        webserver_port:"",
-        conf: "",
+      }); 
+      if(location.state == null)
+      {
+        defaultValues = {
+          webserver_host: "",
+          webserver_port:"",
+          localserver_host:"",
+          localserver_port:"",
+          conf: "modbus",
+  
+        };
+      }
+      else{
+        defaultValues = {
+          webserver_host: location.state.webserver_host,
+          webserver_port:location.state.webserver_port,
+          localserver_host:location.state.localserver_host,
+          localserver_port:location.state.localserver_port,
+          conf: "modbus",
+  
+        };
+      }
 
-      };
+
+      const configuration = [   {
+      value : 'modbus',
+      label : 'modbus',
+    },{
+      value : 'serial',
+      label : 'serial',
+    }]
     
       const methods = useForm({
         resolver: yupResolver(gatewaySchema),
@@ -66,6 +96,7 @@ export default function EditGatewayConfiguration () {
 
 
       const onSubmit = async (data) => {
+        console.log("submit clicked");
         try {
           const options = {
             webserver_host: data.webserver_host,
@@ -137,7 +168,7 @@ export default function EditGatewayConfiguration () {
               fontSize: "8px",
             }}
           >
-            Host
+           Web Host
           </Typography>
           <RHFTextField
             sx={{ borderRadius: 5 }}
@@ -154,7 +185,7 @@ export default function EditGatewayConfiguration () {
               fontSize: "8px",
             }}
           >
-            Port
+            Web Port
           </Typography>
           <RHFTextField
             sx={{ borderRadius: 10 }}
@@ -171,12 +202,47 @@ export default function EditGatewayConfiguration () {
               fontSize: "8px",
             }}
           >
-            Config
+           Local Host
+          </Typography>
+          <RHFTextField
+            sx={{ borderRadius: 5 }}
+            name="localserver_host"
+            label="Enter the Valid Password"
+          />
+        </Stack>
+        <Stack spacing={1}>
+          <Typography
+            variant="h4"
+            sx={{
+              textAlign: "left",
+              fontWeight: "normal",
+              fontSize: "8px",
+            }}
+          >
+            Local Port
           </Typography>
           <RHFTextField
             sx={{ borderRadius: 10 }}
+            name="localserver_port"
+            label="Enter the Valid Password"
+          />
+        </Stack>
+        <Stack spacing={1}>
+          <Typography
+            variant="h4"
+            sx={{
+              textAlign: "left",
+              fontWeight: "normal",
+              fontSize: "8px",
+            }}
+          >
+            Config
+          </Typography>
+          <RHFSelect
+            sx={{ borderRadius: 10 }}
             name="conf"
             label="Enter the Valid Password"
+            options={configuration}
           />
         </Stack>
 
