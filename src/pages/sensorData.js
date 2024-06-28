@@ -52,65 +52,20 @@ export default function SensorData () {
     const [loading, setLoading] = useState(false);
     const [requestBody, setRequestBody] = useState([]);
 
-    // const sensorSchema = Yup.object().shape({
-    //   external_slot_id: Yup.string(),
-    //   status:Yup.number(),
-    //   height: Yup.number()
-    //   });
- 
 
-
-    //   const defaultValues = {
-    //     external_slot_id: "",
-    //     status:"",
-    //     height: ""
-    //   };
-    
-    //   const methods = useForm({
-    //     resolver: yupResolver(sensorSchema),
-    //     defaultValues,
-    //   });
-    
-    
-
-
-      // useEffect(() => {
-      //   setLoading(true);
-        
-      //   sensorData();
-      //  const interval = setInterval(() => sensorData() ,1000);
-      //   return () => clearInterval(interval);
-      // }, []);
 
       useEffect(() => {
         setLoading(true);
         
         liveData();
-       const interval = setInterval(() => liveData() ,10000);
+       const interval = setInterval(() => liveData() ,1000);
         return () => clearInterval(interval);
       }, []);
 
-    // const sensorData = async () => {
-    //     try{
-  
-    //         const response = await Auth_API.SensorData();
 
-    //     console.log("sensor_data from react" , response);
-    //  //   setRequestBody(response.data);
-        
-    //     }
-    //     catch(error){
-    //         console.error(error);
-    //     }
-        
-    // }
     const liveData = async() => {
       try{
        
-  
-  
-        // const response1 = await Auth_API.SensorData();
-        // console.log("slot status bulk api called api called",response1);
 
         const response = await Auth_API.LiveData();
         console.log("sensor_data from Live" , response);
@@ -124,7 +79,7 @@ export default function SensorData () {
    
     }
 
-    console.log("Sensor Data from react" , viewSensor);
+   // console.log("Sensor Data from react" , viewSensor);
 
     return(
         <Page title="Sensor">

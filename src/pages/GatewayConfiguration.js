@@ -54,7 +54,8 @@ export default function GatewayConfiguration () {
         setTimeout(() => {
         
             navigate('/dashboard/gateway_config',{
-              replace: true
+              replace: true,
+              state:viewGatewayConf
             }); // Provide the path to the target page
             setLoading(false);
         }, 1000);

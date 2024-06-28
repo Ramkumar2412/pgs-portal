@@ -81,7 +81,8 @@ export default function SensorConfiguration () {
       setTimeout(() => {
       
           navigate('/dashboard/sensor_config',{
-            replace: true
+            replace: true,
+            state:sensorConfig
           }); // Provide the path to the target page
           setLoading(false);
       }, 1000);

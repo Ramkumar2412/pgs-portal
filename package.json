@@ -77,11 +77,11 @@
     "react-loader-spinner": "^6.1.6",
     "react-map-gl": "^7.1.7",
     "react-markdown": "^8.0.3",
-    
     "react-quill": "^2.0.0",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
+    "react-toastify": "^10.0.5",
     "rehype-raw": "^6.1.1",
     "simplebar": "^5.3.8",
     "simplebar-react": "^2.4.1",
