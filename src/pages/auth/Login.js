@@ -66,11 +66,7 @@ const ContentStyle = styled("div")(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function Login() {
-  // const { method } = useAuth();
 
-  // const smUp = useResponsive("up", "sm");
-
-  // const mdUp = useResponsive("up", "md");
 
   return (
     <Page title="Login">
@@ -102,7 +98,7 @@ export default function Login() {
                 variant="h3"
                 sx={{ mt: 2, mb: 2, textAlign: "center", fontWeight: "bold" }}
               >
-                Welcome Back
+                Welcome
               </Typography>
               {/* <LoginForm  /> */}
               <AdminLogin />

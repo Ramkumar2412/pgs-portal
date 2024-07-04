@@ -94,7 +94,7 @@ export default function GatewayConfiguration () {
                 >
                              <CardContent
                           sx={{
-                            height: "900px",
+                            height: "375px",
                             bgcolor: "#ECECEC",
                           }}
                         >
@@ -107,7 +107,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                serial_terminal :  {viewGatewayConf ? viewGatewayConf.serial_terminal : ""}
+                                Webserver Host :  {viewGatewayConf ? viewGatewayConf.webserver_host : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -117,7 +117,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                ap_mode :  {viewGatewayConf ? viewGatewayConf.ap_mode : ""}
+                                Webserver Port :  {viewGatewayConf ? viewGatewayConf.webserver_port : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -127,7 +127,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                conf :  {viewGatewayConf ? viewGatewayConf.conf : ""}
+                                Webserver Protocol :  {viewGatewayConf ? viewGatewayConf.webserver_protocol : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -137,7 +137,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                controller_communication :  {viewGatewayConf ? viewGatewayConf.controller_communication : ""}
+                                Localserver Host :  {viewGatewayConf ? viewGatewayConf.localserver_host : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -147,7 +147,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                database :  {viewGatewayConf ? viewGatewayConf?.database : ""}
+                                Localserver Port :  {viewGatewayConf ? viewGatewayConf?.localserver_port : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -157,7 +157,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                display :  {viewGatewayConf ? viewGatewayConf.display : ""}
+                                Localserver Protocol :  {viewGatewayConf ? viewGatewayConf.localserver_protocol : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -167,7 +167,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                display_7_segment :  {viewGatewayConf ? viewGatewayConf.display_7_segment : ""}
+                                Communication :  {viewGatewayConf ? viewGatewayConf.conf : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -177,8 +177,9 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                display_refresh_timeout :  {viewGatewayConf ? viewGatewayConf.display_refresh_timeout : ""}
+                                Webserver Authcode :  {viewGatewayConf ? viewGatewayConf.webserver_authcode : ""}
                               </Box>
+
                               <Box
                                 sx={{
                                   marginBottom: 1,
@@ -187,117 +188,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                display_source :  {viewGatewayConf ? viewGatewayConf.display_source : ""}
-                              </Box>
-                              <Box
-                                sx={{
-                                  marginBottom: 1,
-                                  marginTop: 1,
-                                  mr: 2,
-                                  fontWeight: "Bold",
-                                }}
-                              >
-                                display_timeout :  {viewGatewayConf ? viewGatewayConf.display_timeout : ""}
-                              </Box>
-                              <Box
-                                sx={{
-                                  marginBottom: 1,
-                                  marginTop: 1,
-                                  mr: 2,
-                                  fontWeight: "Bold",
-                                }}
-                              >
-                                floor_sensor :  {viewGatewayConf ? viewGatewayConf.floor_sensor : ""}
-                              </Box>
-                              <Box
-                                sx={{
-                                  marginBottom: 1,
-                                  marginTop: 1,
-                                  mr: 2,
-                                  fontWeight: "Bold",
-                                }}
-                              >
-                                gateway_connections :  {viewGatewayConf ? viewGatewayConf.gateway_connections : ""}
-                              </Box>
-                              <Box
-                                sx={{
-                                  marginBottom: 1,
-                                  marginTop: 1,
-                                  mr: 2,
-                                  fontWeight: "Bold",
-                                }}
-                              >
-                                height_refresh_timeout :  {viewGatewayConf ? viewGatewayConf.height_refresh_timeout : ""}
-                              </Box>
-                              <Box
-                                sx={{
-                                  marginBottom: 1,
-                                  marginTop: 1,
-                                  mr: 2,
-                                  fontWeight: "Bold",
-                                }}
-                              >
-                                hi_timeout :  {viewGatewayConf ? viewGatewayConf.hi_timeout : ""}
-                              </Box>
-                              <Box
-                                sx={{
-                                  marginBottom: 1,
-                                  marginTop: 1,
-                                  mr: 2,
-                                  fontWeight: "Bold",
-                                }}
-                              >
-                                is_proxy :  {viewGatewayConf ? viewGatewayConf.is_proxy : ""}
-                              </Box>
-                              <Box
-                                sx={{
-                                  marginBottom: 1,
-                                  marginTop: 1,
-                                  mr: 2,
-                                  fontWeight: "Bold",
-                                }}
-                              >
-                                is_unauthorized_at_start :  {viewGatewayConf ? viewGatewayConf.is_unauthorized_at_start : ""}
-                              </Box>
-                              <Box
-                                sx={{
-                                  marginBottom: 1,
-                                  marginTop: 1,
-                                  mr: 2,
-                                  fontWeight: "Bold",
-                                }}
-                              >
-                                local_print :  {viewGatewayConf ? viewGatewayConf.local_print : ""}
-                              </Box>
-                              <Box
-                                sx={{
-                                  marginBottom: 1,
-                                  marginTop: 1,
-                                  mr: 2,
-                                  fontWeight: "Bold",
-                                }}
-                              >
-                                webserver_host :  {viewGatewayConf ? viewGatewayConf.webserver_host : ""}
-                              </Box>
-                              <Box
-                                sx={{
-                                  marginBottom: 1,
-                                  marginTop: 1,
-                                  mr: 2,
-                                  fontWeight: "Bold",
-                                }}
-                              >
-                                webserver_port :  {viewGatewayConf ? viewGatewayConf.webserver_port : ""}
-                              </Box>
-                              <Box
-                                sx={{
-                                  marginBottom: 1,
-                                  marginTop: 1,
-                                  mr: 2,
-                                  fontWeight: "Bold",
-                                }}
-                              >
-                                conf :  {viewGatewayConf ? viewGatewayConf.conf : ""}
+                                Verified :  {viewGatewayConf ? viewGatewayConf.key_verify : ""}
                               </Box>
 
                             </Stack>
@@ -309,8 +200,8 @@ export default function GatewayConfiguration () {
                             sx={{
                               background:
                                 "linear-gradient(135.96deg, #11D6D6 0%, #009797 101.74%)",
-                              minHeight: "60px",
-                              borderRadius: 2,
+                              minHeight: "50px",
+                              borderRadius: 1,
                                 }}
                               >
                               <Typography variant="body1" fontWeight="bold">

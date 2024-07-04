@@ -81,10 +81,7 @@ export default function ModbusConfiguration () {
 
 
 console.log("viewModbusConf",viewModbusConf);
- // const modbusConf = location.state.channels;
-  //setviewModbusConf(modbus.channels);
 
-  //console.log("Modbus",modbusConf);
     return(
 
         <Page title="Modbus Configuration">
@@ -94,7 +91,7 @@ console.log("viewModbusConf",viewModbusConf);
                 variant="h3"
                 sx={{ mt: 2, mb: 2, textAlign: "center", fontWeight: "bold" }}
               >
-                Welcome Back
+                Welcome
               </Typography>
             </ContentStyle>
 
@@ -103,7 +100,7 @@ console.log("viewModbusConf",viewModbusConf);
         <Card>
         <CardContent
                   sx={{
-                    height: "350px",
+                    height: "300px",
                     overflowY: "auto",
                     scrollbarWidth: "none",
                     msOverflowStyle: "none",
@@ -117,7 +114,7 @@ console.log("viewModbusConf",viewModbusConf);
                     <Card key={index} sx={{ width: "100%", marginTop: 1 }}>
                       <CardContent
                           sx={{
-                            height: "300px",
+                            height: "250px",
                             bgcolor: "#ECECEC",
                           }}
                         >

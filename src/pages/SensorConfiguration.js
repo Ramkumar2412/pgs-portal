@@ -200,7 +200,7 @@ export default function SensorConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                parked_color :  {sensorConfig ? sensorConfig.parked_color : ""}
+                                Parked Color :  {sensorConfig ? sensorConfig.parked_color : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -210,7 +210,7 @@ export default function SensorConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                Free_colour :  {sensorConfig ? sensorConfig.Free_colour : ""}
+                                Free Colour :  {sensorConfig ? sensorConfig.Free_colour : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -220,7 +220,7 @@ export default function SensorConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                offset :  {sensorConfig ? sensorConfig.offset : ""}
+                                Offset :  {sensorConfig ? sensorConfig.offset : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -230,7 +230,7 @@ export default function SensorConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                parked_min :  {sensorConfig ? sensorConfig.parked_min : ""}
+                                Parked Minimum :  {sensorConfig ? sensorConfig.parked_min : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -240,7 +240,7 @@ export default function SensorConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                parked_max :  {sensorConfig ? sensorConfig.parked_max : ""}
+                                Parked Maximium :  {sensorConfig ? sensorConfig.parked_max : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -250,7 +250,7 @@ export default function SensorConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                free_min :  {sensorConfig ? sensorConfig.free_min : ""}
+                                Free Minimum :  {sensorConfig ? sensorConfig.free_min : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -260,7 +260,7 @@ export default function SensorConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                free_max :  {sensorConfig ? sensorConfig.free_max : ""}
+                                Free Maximium :  {sensorConfig ? sensorConfig.free_max : ""}
                               </Box>
                               <Box
                                 sx={{

@@ -17,6 +17,7 @@ import { get } from "lodash";
 import Auth_API from "../../../services/auth";
 import ObjectStorage from "../../../modules/ObjectStorage";
 import { StorageConstants } from "../../../constants/StorageConstants";
+import { useNavigate , useLocation } from "react-router-dom";
 
 // ----------------------------------------------------------------------
 
@@ -24,7 +25,8 @@ export default function AccountPopover() {
   const [open, setOpen] = useState(null);
   const userDetails = AuthService.getUserDetails()
   const { firstname,lastname } = userDetails;
-  const employeeName = `${firstname} ${lastname}`
+  const employeeName = `${firstname} ${lastname}`;
+  const navigate = useNavigate();
 
   console.log("userDetails", userDetails);
 
@@ -38,11 +40,14 @@ export default function AccountPopover() {
 
   const handleLogout = async () => {
     try {
-      const options = {
-        token: AuthService._getAccessToken(),
-      };
-      const response = await Auth_API.logout(options);
-      AuthService.logout();
+      // const options = {
+      //   token: AuthService._getAccessToken(),
+      // };
+      // const response = await Auth_API.logout(options);
+      // AuthService.logout();
+
+      navigate("/");
+
     } catch (error) {
       console.error(error);
     }
