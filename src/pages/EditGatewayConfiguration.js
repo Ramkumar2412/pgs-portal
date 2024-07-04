@@ -318,7 +318,7 @@ export default function EditGatewayConfiguration () {
               fontSize: "8px",
             }}
           >
-            Verify
+            SSL Certificate Verification
           </Typography>
           <RHFSelect
             sx={{ borderRadius: 10 }}

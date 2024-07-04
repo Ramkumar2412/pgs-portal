@@ -142,7 +142,7 @@ export default function SensorData () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                Status :  {sensor ? sensor.status : ""}
+                                Status :  {sensor ? sensor.status_name : ""}
                               </Box>
                              </Typography>
                              </Stack>

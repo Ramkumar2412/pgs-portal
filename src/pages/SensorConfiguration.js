@@ -190,7 +190,7 @@ export default function SensorConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                slaveID :  {sensorConfig ? sensorConfig.slaveID : ""}
+                                Sensor Id :  {sensorConfig ? sensorConfig.slaveID : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -272,7 +272,7 @@ export default function SensorConfiguration () {
                               >
                                 Timeout :  {sensorConfig ? sensorConfig.Timeout : ""}
                               </Box>
-                              <Box
+                              {/* <Box
                                 sx={{
                                   marginBottom: 1,
                                   marginTop: 1,
@@ -281,7 +281,7 @@ export default function SensorConfiguration () {
                                 }}
                               >
                                 Configure :  {sensorConfig ? sensorConfig.Configure : ""}
-                              </Box>
+                              </Box> */}
                             </Typography>
                           </Stack>
                           <LoadingButton

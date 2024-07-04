@@ -56,10 +56,7 @@ export default function ModbusConfiguration () {
   }, []);
   
 
-  useEffect(() => {
-    setLoading(true);
-    modbusConfiguration();
-  }, []);
+
   
   const modbusConfiguration = async() => {
     try{
@@ -78,8 +75,10 @@ export default function ModbusConfiguration () {
     setTimeout(() => {
     
         navigate('/dashboard/modbus_config',{
-     
-    })
+          replace : true,
+          state : viewModbusConf
+    });
+    setLoading(false)
     }, 1000);
 };
 
@@ -97,7 +96,7 @@ console.log("viewModbusConf",viewModbusConf);
                 variant="h3"
                 sx={{ mt: 2, mb: 2, textAlign: "center", fontWeight: "bold" }}
               >
-                Welcome
+                Modbus Configuration
               </Typography>
             </ContentStyle>
 

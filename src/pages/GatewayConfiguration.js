@@ -107,7 +107,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                Webserver Host :  {viewGatewayConf ? viewGatewayConf.webserver_host : ""}
+                                Web Server Host :  {viewGatewayConf ? viewGatewayConf.webserver_host : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -117,7 +117,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                Webserver Port :  {viewGatewayConf ? viewGatewayConf.webserver_port : ""}
+                                Web Server Port :  {viewGatewayConf ? viewGatewayConf.webserver_port : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -127,7 +127,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                Webserver Protocol :  {viewGatewayConf ? viewGatewayConf.webserver_protocol : ""}
+                                Web Server Protocol :  {viewGatewayConf ? viewGatewayConf.webserver_protocol : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -137,7 +137,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                Localserver Host :  {viewGatewayConf ? viewGatewayConf.localserver_host : ""}
+                                Local Server Host :  {viewGatewayConf ? viewGatewayConf.localserver_host : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -147,7 +147,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                Localserver Port :  {viewGatewayConf ? viewGatewayConf?.localserver_port : ""}
+                                Local Server Port :  {viewGatewayConf ? viewGatewayConf?.localserver_port : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -157,7 +157,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                Localserver Protocol :  {viewGatewayConf ? viewGatewayConf.localserver_protocol : ""}
+                                Local Server Protocol :  {viewGatewayConf ? viewGatewayConf.localserver_protocol : ""}
                               </Box>
                               <Box
                                 sx={{
@@ -177,7 +177,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                Webserver Authcode :  {viewGatewayConf ? viewGatewayConf.webserver_authcode : ""}
+                                Web Server Authcode :  {viewGatewayConf ? viewGatewayConf.webserver_authcode : ""}
                               </Box>
 
                               <Box
@@ -188,7 +188,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                Verified :  {viewGatewayConf ? viewGatewayConf.key_verify : ""}
+                                SSL Certificate Verification :  {viewGatewayConf ? viewGatewayConf.key_verify : ""}
                               </Box>
 
                             </Stack>
