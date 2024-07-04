@@ -55,6 +55,12 @@ export default function ModbusConfiguration () {
     modbusConfiguration();
   }, []);
   
+
+  useEffect(() => {
+    setLoading(true);
+    modbusConfiguration();
+  }, []);
+  
   const modbusConfiguration = async() => {
     try{
         const response = await Auth_API.getmodbusconf();
@@ -72,9 +78,8 @@ export default function ModbusConfiguration () {
     setTimeout(() => {
     
         navigate('/dashboard/modbus_config',{
-          replace: true
-        }); // Provide the path to the target page
-        setLoading(false);
+     
+    })
     }, 1000);
 };
 
@@ -83,6 +88,7 @@ export default function ModbusConfiguration () {
 console.log("viewModbusConf",viewModbusConf);
 
     return(
+
 
         <Page title="Modbus Configuration">
               <Container>
@@ -94,6 +100,9 @@ console.log("viewModbusConf",viewModbusConf);
                 Welcome
               </Typography>
             </ContentStyle>
+
+    
+
 
     
 
@@ -201,6 +210,8 @@ console.log("viewModbusConf",viewModbusConf);
                                 Edit
                               </Typography>
                             </LoadingButton>
+                  
+    
                   
     
              
