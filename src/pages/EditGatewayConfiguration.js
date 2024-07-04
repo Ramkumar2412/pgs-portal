@@ -54,9 +54,12 @@ export default function EditGatewayConfiguration () {
         defaultValues = {
           webserver_host: "",
           webserver_port:"",
+          webserver_protocol:"",
           localserver_host:"",
           localserver_port:"",
+          localserver_protocol:"",
           conf: "modbus",
+          key_verify:""
   
         };
       }
@@ -64,9 +67,12 @@ export default function EditGatewayConfiguration () {
         defaultValues = {
           webserver_host: location.state.webserver_host,
           webserver_port:location.state.webserver_port,
+          webserver_protocol:"http",
           localserver_host:location.state.localserver_host,
           localserver_port:location.state.localserver_port,
+          localserver_protocol:"http",
           conf: "modbus",
+          key_verify : 'yes'
   
         };
       }
@@ -78,7 +84,23 @@ export default function EditGatewayConfiguration () {
     },{
       value : 'serial',
       label : 'serial',
-    }]
+    }];
+
+    const protocol = [ {
+      value:'http',
+      label:'http',
+    },{
+      value:'https',
+      label:'https'
+    }];
+
+    const verification = [{
+      value : 'yes',
+      label : 'yes'
+    },{
+      value : 'no',
+      label : 'no'
+    }];
     
       const methods = useForm({
         resolver: yupResolver(gatewaySchema),
@@ -101,7 +123,12 @@ export default function EditGatewayConfiguration () {
           const options = {
             webserver_host: data.webserver_host,
             webserver_port:data.webserver_port,
-            conf: data.conf
+            webserver_protocol: data.webserver_protocol,
+            localserver_host: data.localserver_host,
+            localserver_port:data.localserver_port,
+            localserver_protocol: data.localserver_protocol,
+            conf: data.conf,
+            key_verify: data.key_verify
           };
           const response = await Auth_API.writeGatewayConf(options);
           console.log("response", response);
@@ -173,7 +200,7 @@ export default function EditGatewayConfiguration () {
           <RHFTextField
             sx={{ borderRadius: 5 }}
             name="webserver_host"
-            label="Enter the Valid Password"
+            label="Enter the Valid Web host"
           />
         </Stack>
         <Stack spacing={1}>
@@ -190,7 +217,25 @@ export default function EditGatewayConfiguration () {
           <RHFTextField
             sx={{ borderRadius: 10 }}
             name="webserver_port"
-            label="Enter the Valid Password"
+            label="Enter the Valid Web port"
+          />
+        </Stack>
+        <Stack spacing={1}>
+          <Typography
+            variant="h4"
+            sx={{
+              textAlign: "left",
+              fontWeight: "normal",
+              fontSize: "8px",
+            }}
+          >
+           Web Protocol
+          </Typography>
+          <RHFSelect
+            sx={{ borderRadius: 5 }}
+            name="webserver_protocol"
+            label="Enter the Valid Protocol"
+            options={protocol}
           />
         </Stack>
         <Stack spacing={1}>
@@ -207,7 +252,7 @@ export default function EditGatewayConfiguration () {
           <RHFTextField
             sx={{ borderRadius: 5 }}
             name="localserver_host"
-            label="Enter the Valid Password"
+            label="Enter the Valid Local host"
           />
         </Stack>
         <Stack spacing={1}>
@@ -224,7 +269,7 @@ export default function EditGatewayConfiguration () {
           <RHFTextField
             sx={{ borderRadius: 10 }}
             name="localserver_port"
-            label="Enter the Valid Password"
+            label="Enter the Valid Local Port"
           />
         </Stack>
         <Stack spacing={1}>
@@ -236,13 +281,50 @@ export default function EditGatewayConfiguration () {
               fontSize: "8px",
             }}
           >
-            Config
+           Local Protocol
+          </Typography>
+          <RHFSelect
+            sx={{ borderRadius: 5 }}
+            name="localserver_protocol"
+            label="Enter the Valid Protocol"
+            options={protocol}
+          />
+        </Stack>
+        <Stack spacing={1}>
+          <Typography
+            variant="h4"
+            sx={{
+              textAlign: "left",
+              fontWeight: "normal",
+              fontSize: "8px",
+            }}
+          >
+            Communication
           </Typography>
           <RHFSelect
             sx={{ borderRadius: 10 }}
             name="conf"
-            label="Enter the Valid Password"
+            label=""
             options={configuration}
+          />
+        </Stack>
+
+        <Stack spacing={1}>
+          <Typography
+            variant="h4"
+            sx={{
+              textAlign: "left",
+              fontWeight: "normal",
+              fontSize: "8px",
+            }}
+          >
+            Verify
+          </Typography>
+          <RHFSelect
+            sx={{ borderRadius: 10 }}
+            name="key_verify"
+            label=""
+            options={verification}
           />
         </Stack>
 

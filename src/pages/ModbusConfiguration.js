@@ -55,6 +55,12 @@ export default function ModbusConfiguration () {
     modbusConfiguration();
   }, []);
   
+
+  useEffect(() => {
+    setLoading(true);
+    modbusConfiguration();
+  }, []);
+  
   const modbusConfiguration = async() => {
     try{
         const response = await Auth_API.getmodbusconf();
@@ -72,20 +78,17 @@ export default function ModbusConfiguration () {
     setTimeout(() => {
     
         navigate('/dashboard/modbus_config',{
-          replace: true
-        }); // Provide the path to the target page
-        setLoading(false);
+     
+    })
     }, 1000);
 };
 
 
 
 console.log("viewModbusConf",viewModbusConf);
- // const modbusConf = location.state.channels;
-  //setviewModbusConf(modbus.channels);
 
-  //console.log("Modbus",modbusConf);
     return(
+
 
         <Page title="Modbus Configuration">
               <Container>
@@ -94,16 +97,19 @@ console.log("viewModbusConf",viewModbusConf);
                 variant="h3"
                 sx={{ mt: 2, mb: 2, textAlign: "center", fontWeight: "bold" }}
               >
-                Welcome Back
+                Welcome
               </Typography>
             </ContentStyle>
+
+    
+
 
     
 
         <Card>
         <CardContent
                   sx={{
-                    height: "350px",
+                    height: "300px",
                     overflowY: "auto",
                     scrollbarWidth: "none",
                     msOverflowStyle: "none",
@@ -117,7 +123,7 @@ console.log("viewModbusConf",viewModbusConf);
                     <Card key={index} sx={{ width: "100%", marginTop: 1 }}>
                       <CardContent
                           sx={{
-                            height: "300px",
+                            height: "250px",
                             bgcolor: "#ECECEC",
                           }}
                         >
@@ -204,6 +210,8 @@ console.log("viewModbusConf",viewModbusConf);
                                 Edit
                               </Typography>
                             </LoadingButton>
+                  
+    
                   
     
              

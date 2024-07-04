@@ -13,7 +13,11 @@ import {
   InputAdornment,
   Stack,
   Typography,
+  TextField
 } from "@mui/material";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
 
 import { RHFTextField, FormProvider } from "src/components/hook-form";
 import ObjectStorage from "src/modules/ObjectStorage";
@@ -26,9 +30,18 @@ import { StorageConstants } from "src/constants/StorageConstants";
 
 export default function AdminLogin () {
 
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
   const navigate = useNavigate();
     const LoginSchema = Yup.object().shape({
-        emailId: Yup.string().required("Email Id is required"),
+        emailId: Yup.string().required("username is required"),
         password:Yup.string().required("password is required")
       });
 
@@ -104,12 +117,12 @@ export default function AdminLogin () {
               fontSize: "10px",
             }}
           >
-            Email Id
+            Username
           </Typography>
           <RHFTextField
             sx={{ borderRadius: 10 }}
             name="emailId"
-            label="Enter the registered Email Id"
+            label="Enter the Username"
           />
         </Stack>
         <Stack spacing={1}>
@@ -120,6 +133,7 @@ export default function AdminLogin () {
               fontWeight: "normal",
               fontSize: "8px",
             }}
+   
           >
             Password
           </Typography>
@@ -127,6 +141,19 @@ export default function AdminLogin () {
             sx={{ borderRadius: 10 }}
             name="password"
             label="Enter the Valid Password"
+            type={showPassword ? 'text' : 'password'}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
           />
         </Stack>
         <LoadingButton
