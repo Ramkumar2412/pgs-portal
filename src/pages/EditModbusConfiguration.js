@@ -1,6 +1,6 @@
 import get from "lodash/get";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate , useLocation} from "react-router";
 import * as Yup from "yup";
 import useSettings from "../hooks/useSettings";
 // components
@@ -38,6 +38,7 @@ const ContentStyle = styled("div")(({ theme }) => ({
 export default function EditModbusConfiguration () {
   const { themeStretch } = useSettings();
     const navigate = useNavigate();
+    const location = useLocation();
     const modbusSchema = Yup.object().shape({
         address: Yup.string().required("Address Id is required"),
         port:Yup.string().required("Port is required"),
@@ -47,15 +48,15 @@ export default function EditModbusConfiguration () {
         number_of_sensors:Yup.number().required("Sensor is required")
       });
       const defaultValues = {
-        address: "",
+        address: location.state[0].address,
         port:"/dev/ttySC0",
         method: "rtu",
         baudrate:"115200",
-        full_scan_time: "",
-        number_of_sensors:"",
+        full_scan_time: location.state[0].full_scan_time,
+        number_of_sensors:location.state[0].number_of_sensors,
 
       };
-    
+    console.log("LOCATION",location);
       const methods = useForm({
         resolver: yupResolver(modbusSchema),
         defaultValues,
