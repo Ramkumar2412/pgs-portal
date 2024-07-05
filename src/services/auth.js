@@ -196,5 +196,41 @@ const Auth_API = {
       );
     });
   },
+
+  stopDocker() {
+    return new Promise((resolve, reject) => {
+      APIService.fetch(
+        `${API}/stop_docker`,
+        {
+          method: "POST",
+          body: JSON.stringify(),
+          headers: {
+            //AuthCode: AdminAuthCode,
+            "Content-Type": "application/json",
+          },
+        },
+        handleCallback(resolve, reject)
+      );
+    });
+  },
+
+  restartDocker() {
+    return new Promise((resolve, reject) => {
+      APIService.fetch(
+        `${API}/restart_docker`,
+        {
+          method: "POST",
+          body: JSON.stringify(),
+          headers: {
+            //AuthCode: AdminAuthCode,
+            "Content-Type": "application/json",
+          },
+        },
+        handleCallback(resolve, reject)
+      );
+    });
+  },
 };
+
+
 export default Auth_API;

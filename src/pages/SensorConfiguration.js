@@ -5,6 +5,7 @@ import {
     Card,
     CardContent,
     Container,
+    Switch,
     Dialog,
     Grid,
     MenuItem,
@@ -52,6 +53,7 @@ export default function SensorConfiguration () {
 
   //const [viewSensorCount , setviewSensorCount] = useState([]);
   const [sensorConfig, setsensorConfig] = useState([]);
+  const [containerRunning, setContainerRunning] = useState(false);
   const [sensor , setSensor] = useState(false);
   const isMinWidth400px = useMediaQuery("(max-width:400px)");
   const navigate = useNavigate();
@@ -88,7 +90,24 @@ export default function SensorConfiguration () {
       }, 1000);
   };
   
-
+  const handleToggle = async () => {
+    try{
+      if(containerRunning){
+        const response = await Auth_API.stopDocker();
+        console.log("stop docker response",response);
+        setContainerRunning(false);
+        toast(response.ErrDesc);
+      }else{
+        const response = await Auth_API.restartDocker();
+        console.log("else docker response",response);
+        setContainerRunning(true);
+        toast(response.ErrDesc);
+      }
+    }
+    catch(error){
+      console.error('Error toggling container state:', error);
+    }
+  }
 
   const onSubmit = async (data) => {
     try {
@@ -123,6 +142,7 @@ export default function SensorConfiguration () {
                   Sensor
                 </Typography>
               </ContentStyle>
+              <Container maxWidth={themeStretch ? false : "xl"}>
                 <Stack spacing={3}>
                   {!!errors.afterSubmit && (
                     <Alert severity="error">
@@ -131,44 +151,60 @@ export default function SensorConfiguration () {
                       }
                     </Alert>
                   )}
-                <Stack spacing={1}>
-                    <Typography
-                      variant="h4"
-                      sx={{
-                        textAlign: "left",
-                        fontWeight: "normal",
-                        fontSize: "8px",
-                      }}
-                    >
-                      Sensor
-                    </Typography>
-                    <RHFTextField
-                      sx={{ borderRadius: 5 }}
-                      name="slave_id"
-                      label="Enter the Valid sensor"
-                    />
-                  </Stack>
-                  <LoadingButton
-                      fullWidth
-                      type="submit"
-                      variant="contained"
-                      loading={isSubmitting}
-                      sx={{
-                        background:
-                          "linear-gradient(135.96deg, #11D6D6 0%, #009797 101.74%)",
-                        minHeight: "60px",
-                        borderRadius: 2,
-                      }}
-                    >
-                      <Typography variant="body1" fontWeight="bold">
-                        Read
-                      </Typography>
-                    </LoadingButton>
-        </Stack>
+                    <Grid container spacing={2} width='200%' >
+                        <Grid item xs={12} md={6}>
+                          <Typography
+                            variant="h4"
+                            sx={{
+                              textAlign: "left",
+                              fontWeight: "normal",
+                              fontSize: "8px",
+                            }}
+                          >
+                            Sensor
+                          </Typography>
+                          <RHFTextField
+                            sx={{ borderRadius: 2 }}
+                            name="slave_id"
+                            label="Enter the Valid sensor"
+                          />
 
-      
-      </FormProvider>
-      </Stack>  
+                          <LoadingButton
+                            fullWidth
+                            type="submit"
+                            variant="contained"
+                            loading={isSubmitting}
+                            sx={{
+                              background:
+                                "linear-gradient(135.96deg, #11D6D6 0%, #009797 101.74%)",
+                              minHeight: "60px",
+                              borderRadius: 2,
+                            }}
+                          >
+                            <Typography variant="body1" fontWeight="bold">
+                              Read
+                            </Typography>
+                          </LoadingButton>
+                        </Grid>
+                          <Grid item xs={12} md={6}>
+                            <Typography variant="h4" gutterBottom
+                            sx={{
+                              textAlign: "left",
+                              fontWeight: "normal",
+                              fontSize: "8px",
+                            }}>
+                              Docker Container Control
+                            </Typography>
+                            <FormControlLabel
+                              control={<Switch checked={containerRunning} onChange={handleToggle} />}
+                              label={containerRunning ? 'Running' : 'Stopped'}
+                            />
+                          </Grid>
+                   </Grid>
+                 </Stack>
+               </Container>
+               </FormProvider>
+          </Stack>  
       </Stack>
 
 
