@@ -94,7 +94,7 @@ export default function GatewayConfiguration () {
                 >
                              <CardContent
                           sx={{
-                            height: "375px",
+                            height: "425px",
                             bgcolor: "#ECECEC",
                           }}
                         >
@@ -158,6 +158,16 @@ export default function GatewayConfiguration () {
                                 }}
                               >
                                 Local Server Protocol :  {viewGatewayConf ? viewGatewayConf.localserver_protocol : ""}
+                              </Box>
+                              <Box
+                                sx={{
+                                  marginBottom: 1,
+                                  marginTop: 1,
+                                  mr: 2,
+                                  fontWeight: "Bold",
+                                }}
+                              >
+                                Subscribers :  {viewGatewayConf ? viewGatewayConf.upstream_subscribers : ""}
                               </Box>
                               <Box
                                 sx={{

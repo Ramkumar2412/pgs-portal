@@ -58,6 +58,7 @@ export default function EditGatewayConfiguration () {
           localserver_host:"",
           localserver_port:"",
           localserver_protocol:"",
+          upstream_subscribers:"ls,ws",
           conf: "modbus",
           key_verify:""
   
@@ -70,6 +71,7 @@ export default function EditGatewayConfiguration () {
           webserver_protocol:"http",
           localserver_host:location.state.localserver_host,
           localserver_port:location.state.localserver_port,
+          upstream_subscribers:"ls,ws",
           localserver_protocol:"http",
           conf: "modbus",
           key_verify : 'yes'
@@ -101,6 +103,17 @@ export default function EditGatewayConfiguration () {
       value : 'no',
       label : 'no'
     }];
+
+    const subscribers = [{
+      value : 'ls,ws',
+      label : 'Both(LS,WS)'
+    },{
+      value : 'ws',
+      label : 'Web Server'
+    },{
+      value : 'ls',
+      label : 'Local Server'
+    }]
     
       const methods = useForm({
         resolver: yupResolver(gatewaySchema),
@@ -127,6 +140,7 @@ export default function EditGatewayConfiguration () {
             localserver_host: data.localserver_host,
             localserver_port:data.localserver_port,
             localserver_protocol: data.localserver_protocol,
+            upstream_subscribers:data.upstream_subscribers,
             conf: data.conf,
             key_verify: data.key_verify
           };
@@ -288,6 +302,24 @@ export default function EditGatewayConfiguration () {
             name="localserver_protocol"
             label="Enter the Valid Protocol"
             options={protocol}
+          />
+        </Stack>
+        <Stack spacing={1}>
+          <Typography
+            variant="h4"
+            sx={{
+              textAlign: "left",
+              fontWeight: "normal",
+              fontSize: "8px",
+            }}
+          >
+            Subscribers
+          </Typography>
+          <RHFSelect
+            sx={{ borderRadius: 10 }}
+            name="upstream_subscribers"
+            label=""
+            options={subscribers}
           />
         </Stack>
         <Stack spacing={1}>
