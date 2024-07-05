@@ -187,7 +187,7 @@ export default function GatewayConfiguration () {
                                   fontWeight: "Bold",
                                 }}
                               >
-                                Web Server Authcode :  {viewGatewayConf ? viewGatewayConf.webserver_authcode : ""}
+                                Authorization :  {viewGatewayConf ? viewGatewayConf.webserver_authcode : ""}
                               </Box>
 
                               <Box

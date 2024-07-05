@@ -45,9 +45,13 @@ export default function EditGatewayConfiguration () {
     const gatewaySchema = Yup.object().shape({
       webserver_host: Yup.string().required("Address Id is required"),
       webserver_port:Yup.string().required("Port is required"),
+      webserver_protocol:Yup.string().required("Protrocol is required"),
       localserver_host: Yup.string().required("Address Id is required"),
       localserver_port:Yup.string().required("Port is required"),
-        conf: Yup.string().required("Method Id is required")
+      localserver_protocol:Yup.string().required("Protrocol is required"),
+      conf: Yup.string().required("Method Id is required"),
+      key_verify:Yup.string().required("Key is required"),
+      webserver_authcode:Yup.string().required("AuthCode is required"),
       }); 
       if(location.state == null)
       {
@@ -58,9 +62,10 @@ export default function EditGatewayConfiguration () {
           localserver_host:"",
           localserver_port:"",
           localserver_protocol:"",
-          upstream_subscribers:"ls,ws",
+          upstream_subscribers:"ls",
           conf: "modbus",
-          key_verify:""
+          key_verify:"",
+          webserver_authcode:""
   
         };
       }
@@ -68,13 +73,14 @@ export default function EditGatewayConfiguration () {
         defaultValues = {
           webserver_host: location.state.webserver_host,
           webserver_port:location.state.webserver_port,
-          webserver_protocol:"http",
+          webserver_protocol:location.state.webserver_protocol,
           localserver_host:location.state.localserver_host,
           localserver_port:location.state.localserver_port,
-          upstream_subscribers:"ls,ws",
-          localserver_protocol:"http",
+          upstream_subscribers:location.state.upstream_subscribers,
+          localserver_protocol:location.state.localserver_protocol,
           conf: "modbus",
-          key_verify : 'yes'
+          key_verify :location.state.key_verify,
+          webserver_authcode:location.state.webserver_authcode
   
         };
       }
@@ -142,7 +148,8 @@ export default function EditGatewayConfiguration () {
             localserver_protocol: data.localserver_protocol,
             upstream_subscribers:data.upstream_subscribers,
             conf: data.conf,
-            key_verify: data.key_verify
+            key_verify: data.key_verify,
+            webserver_authcode:data.webserver_authcode
           };
           const response = await Auth_API.writeGatewayConf(options);
           console.log("response", response);
@@ -357,6 +364,23 @@ export default function EditGatewayConfiguration () {
             name="key_verify"
             label=""
             options={verification}
+          />
+        </Stack>
+        <Stack spacing={1}>
+          <Typography
+            variant="h4"
+            sx={{
+              textAlign: "left",
+              fontWeight: "normal",
+              fontSize: "8px",
+            }}
+          >
+            Authorization
+          </Typography>
+          <RHFTextField
+            sx={{ borderRadius: 10 }}
+            name="webserver_authcode"
+            label="Enter the Valid Local Port"
           />
         </Stack>
 
