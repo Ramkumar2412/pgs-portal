@@ -18,6 +18,9 @@ import {
   Stack,
   Container,
   Box,
+  Grid,
+  FormControlLabel,
+  Switch,
   Typography,
 } from "@mui/material";
 
@@ -25,8 +28,10 @@ import { RHFTextField, FormProvider } from "src/components/hook-form";
 import Auth_API from "src/services/auth";
 import { styled } from "@mui/material/styles";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+// import { toast } from "react-toastify";
+// import 'react-toastify/dist/ReactToastify.css';
+
+import { Toaster, toast } from "react-hot-toast";
 const ContentStyle = styled("div")(({ theme }) => ({
     maxWidth: 480,
     margin: "auto",
@@ -40,6 +45,7 @@ const ContentStyle = styled("div")(({ theme }) => ({
 export default function EditSensorConfiguration () {
 
     const { themeStretch } = useSettings();
+    const [containerRunning, setContainerRunning] = useState(true);
     const navigate = useNavigate();
     const location = useLocation();
     console.log("location",location);
@@ -104,6 +110,25 @@ export default function EditSensorConfiguration () {
         navigate("/dashboard/sensor");
       };
 
+      const handleToggle = async () => {
+        try{
+          if(containerRunning){
+            const response = await Auth_API.stopDocker();
+            console.log("stop docker response",response);
+            setContainerRunning(false);
+            toast(response.ErrDesc);
+          }else{
+            const response = await Auth_API.restartDocker();
+            console.log("else docker response",response);
+            setContainerRunning(true);
+            toast(response.ErrDesc);
+          }
+        }
+        catch(error){
+          console.error('Error toggling container state:', error);
+        }
+      }
+    
 
       const onSubmit = async (data) => {
         try {
@@ -148,8 +173,9 @@ export default function EditSensorConfiguration () {
               get(errors, "afterSubmit.message")
             )}
           </Alert>
-        )}
-            <ContentStyle>
+        )} <Grid container spacing={2} width='200%' >
+          <Grid item xs={12} md={6}>
+          <ContentStyle>
               <Box
                   sx={{
                     width: "3rem",
@@ -174,6 +200,23 @@ export default function EditSensorConfiguration () {
                 Sensor Configuration
               </Typography>
             </ContentStyle>
+          </Grid>
+          <Grid item xs={12} md={6}>
+                            <Typography variant="h4" gutterBottom
+                            sx={{
+                              textAlign: "left",
+                              fontWeight: "normal",
+                              fontSize: "8px",
+                            }}>
+                              Docker Container Control
+                            </Typography>
+                            <FormControlLabel
+                              control={<Switch checked={containerRunning} onChange={handleToggle} />}
+                              label={containerRunning ? 'Running' : 'Stopped'}
+                            />
+                          </Grid>
+        </Grid>
+         
       <Stack spacing={3}>
         {!!errors.afterSubmit && (
           <Alert severity="error">
