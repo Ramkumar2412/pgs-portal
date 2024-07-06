@@ -53,7 +53,7 @@ export default function SensorConfiguration () {
 
   //const [viewSensorCount , setviewSensorCount] = useState([]);
   const [sensorConfig, setsensorConfig] = useState([]);
-  const [containerRunning, setContainerRunning] = useState(false);
+  const [containerRunning, setContainerRunning] = useState(true);
   const [sensor , setSensor] = useState(false);
   const isMinWidth400px = useMediaQuery("(max-width:400px)");
   const navigate = useNavigate();
